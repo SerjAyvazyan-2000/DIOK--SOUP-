@@ -5,6 +5,7 @@ import Home from "./pages/home/home.jsx";
 import Footer from "./components/footer/footer.jsx";
 import Services from "./pages/services/services.jsx";
 import ServiceDetails from "./pages/serviceDetails/serviceDetails.jsx";
+import Products from "./pages/products/products.jsx";
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/services" element={<Services/>}/>
                 <Route path="/servicesDetails" element={<ServiceDetails/>}/>
+                <Route path="/products" element={<Products/>}/>
+
                 <Route path="*" element={<Home/>}/>
 
 

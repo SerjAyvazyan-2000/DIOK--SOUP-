@@ -11,7 +11,20 @@
   }
 
 }
+.link-none{
+  @include mixin.screen-max-width-576{
+    display: none;
 
+  }
+}
+.arrow-visible{
+  display: none;
+
+  @include mixin.screen-max-width-576{
+    display: block;
+
+  }
+}
 .breadcrumbs-link {
   font-weight: 400;
   font-size: 18px;

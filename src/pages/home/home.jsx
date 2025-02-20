@@ -4,8 +4,15 @@ import heroDecor from '../../assets/images/heroDecor.webp'
 import heroDecorMobile from '../../assets/images/heroDecorMobile.webp'
 
 import Form from "../../components/form/form.jsx";
+import Cookie from "../../components/cookie/cookie.jsx";
+import {Link} from "react-router-dom";
+import {useEffect} from "react";
 
 const Home = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return <>
         <section className='hero-section'>
             <div className='container'>
@@ -107,7 +114,10 @@ const Home = () => {
                     </div>
 
                     <div className='trends-btn '>
-                        <Button variant='btn-border' icon='icon-arrow-left' text='Все услуги'/>
+                        <Link className='btn-border' to={'/services'}>
+                            <span>Все услуги</span>
+                            <i className='icon icon-arrow-left'></i>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -171,6 +181,9 @@ const Home = () => {
         </section>
 
         <Form/>
+
+        <Cookie/>
+
     </>
 };
 

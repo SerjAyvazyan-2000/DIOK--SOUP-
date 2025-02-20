@@ -55,3 +55,23 @@
     -webkit-mask-image: url(numbersIcon.svg);
 
 }
+
+.goTo-icon{
+    mask-image: url(share.svg);
+    -webkit-mask-image: url(share.svg);
+}
+
+.step-icon1{
+    mask-image: url(stepIcon1.svg);
+    -webkit-mask-image: url(stepIcon1.svg);
+}
+
+.step-icon2{
+    mask-image: url(stepIcon2.svg);
+    -webkit-mask-image: url(stepIcon2.svg);
+}
+.step-icon3{
+    mask-image: url(stepIcon3.svg);
+    -webkit-mask-image: url(stepIcon3.svg);
+}
+

@@ -1,6 +1,6 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.jsx";
 import './serviceDetails.scss'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import detailsItemActive from "../../assets/images/detailsItemActive.webp";
 import detailsImg from "../../assets/images/detailsImg.webp";
 import detailsImgMobile from "../../assets/images/detailsImgMobile.png";
@@ -16,7 +16,7 @@ import casesItemDecor from "../../assets/images/casesItemDecor.png";
 import advantagesItemDecor from "../../assets/images/advantagesItemDecor.png";
 
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Card from "../../components/card/card.jsx";
 import Form from "../../components/form/form.jsx";
 import Button from "../../ui/button/button.jsx";
@@ -24,10 +24,17 @@ import Button from "../../ui/button/button.jsx";
 const ServiceDetails = () => {
     const [isActive, setIsActive] = useState(true);
     const [activeIndex, setActiveIndex] = useState(null);
+    const location = useLocation();
+
 
     const handleItemClick = (index) => {
         setActiveIndex(index === activeIndex ? null : index);
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
+
 
     const services = [
         {title: "Разработка сайтов", link: "/servicesDetails"},
@@ -299,18 +306,18 @@ const ServiceDetails = () => {
                                     <div className='cases-item-column cases-big-column'>
                                         <h5 className='cases-item-title'>// Кейс dodo brands</h5>
                                         <div className='cases-item-info G-flex-column'>
-                                            <p><span>Задача:</span> Разработка системы для <p
-                                                className='desktop-text-wrap'> автоматизации создания</p>
+                                            <p><span>Задача:</span> Разработка системы для <b
+                                                className='desktop-text-wrap'> автоматизации создания</b>
                                                 персонализированных маркетинговых материалов
-                                                <p className='desktop-text-wrap'>(видео и фото)</p>
+                                                <b className='desktop-text-wrap'>(видео и фото)</b>
                                             </p>
                                             <p>
                                                 <span className='cases-info-title'>функционал:</span>
-                                                — ИИ система монтажа и подготовки <p
-                                                className='desktop-text-wrap'>материалов</p>
-                                               <p className='mobile-text-wrap'> — Пользовательский интерфейс с ролевой
-                                                персонализацие й</p>
-                                                <p className='text-wrap'>— Создание сценариев монтажа материалов</p>
+                                                — ИИ система монтажа и подготовки <b
+                                                className='desktop-text-wrap'>материалов</b>
+                                               <b className='mobile-text-wrap'> — Пользовательский интерфейс с ролевой
+                                                персонализацие й</b>
+                                                <b className='text-wrap'>— Создание сценариев монтажа материалов</b>
                                                 — Система распознавания лиц (Цели -
                                                 афроамериканцы, азиаты, арабы до 16 лет)
 
@@ -331,7 +338,7 @@ const ServiceDetails = () => {
                                             <span>НА 80%</span>
                                             <p>
                                                 Сокращено влияние человеческого
-                                                <p className='desktop-text-wrap'>фактора на процесс</p>
+                                                <b className='desktop-text-wrap'>фактора на процесс</b>
                                             </p>
                                         </div>
 
@@ -349,7 +356,7 @@ const ServiceDetails = () => {
                                             <span>ROI 1000%</span>
                                             <p>
                                                 Решение экономит 4 млн рублей в
-                                                <p className='desktop-text-wrap'> месяц на этапе пилотирования</p>
+                                                <b className='desktop-text-wrap'> месяц на этапе пилотирования</b>
 
                                             </p>
                                         </div>
@@ -373,10 +380,10 @@ const ServiceDetails = () => {
                                             <p>
                                                 <span className='cases-info-title'>функционал:</span>
                                                 LLM
-                                                <p className='text-wrap'>API для интеграций с корпоративными
-                                                    сервисами</p>
+                                                <b className='text-wrap'>API для интеграций с корпоративными
+                                                    сервисами</b>
                                                 Мониторинг
-                                                <p className='text-wrap'>BI-функционал</p>
+                                                <b className='text-wrap'>BI-функционал</b>
 
                                             </p>
                                         </div>
@@ -389,7 +396,7 @@ const ServiceDetails = () => {
                                             <span>В 30 раз</span>
                                             <p>
                                                 повысилась скорость получения
-                                                <p className='text-wrap'>ответа на вопросы общего характера</p>
+                                                <b className='text-wrap'>ответа на вопросы общего характера</b>
                                             </p>
                                         </div>
 
@@ -397,7 +404,7 @@ const ServiceDetails = () => {
                                             <span>НА 80%</span>
                                             <p>
                                                 сокращение количества обращений в
-                                                <p className='text-wrap'>юридическую службу</p>
+                                                <b className='text-wrap'>юридическую службу</b>
                                             </p>
                                         </div>
 
@@ -406,7 +413,7 @@ const ServiceDetails = () => {
                                             <span>37 МЛН РУБЛЕЙ</span>
                                             <p>
                                                 экономия в годовом выражении на
-                                                <p className='text-wrap'>этапе пилотирования</p>
+                                                <b className='text-wrap'>этапе пилотирования</b>
 
                                             </p>
                                         </div>
@@ -575,7 +582,7 @@ const ServiceDetails = () => {
 
                             <div className='interesting-items'>
                                 {interesting.map((service, index) => (
-                                    <Card item={service} index={index}/>
+                                    <Card key={index} item={service} index={index}/>
                                 ))}
                             </div>
 

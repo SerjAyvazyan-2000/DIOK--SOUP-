@@ -33,21 +33,21 @@ const Header = () => {
         <div className='header-container'>
 
             <div className='header-body G-justify-between'>
-                <NavLink className='header-logo G-flex' to="/home">
+                <NavLink onClick={toggleBurger} className='header-logo G-flex' to="/home">
                     <img src={logo} alt=""/>
                 </NavLink>
                 <nav className={`menu ${isActive ? "active" : ""}`}>
                     <ul className='menu-list G-align-center'>
-                        <li className='menu-item'>
-                            <NavLink className='menu-link' to={'/services'} end>Услуги</NavLink>
+                        <li onClick={toggleBurger} className='menu-item'>
+                            <NavLink className='menu-link' to={'/services'} >Услуги</NavLink>
                         </li>
-                        <li className='menu-item'>
-                            <NavLink className='menu-link' to={'/'} end>Продукты</NavLink>
+                        <li onClick={toggleBurger} className='menu-item'>
+                            <NavLink className='menu-link' to={'/products'} >Продукты</NavLink>
                         </li>
-                        <li className='menu-item'>
+                        <li onClick={toggleBurger} className='menu-item'>
                             <NavLink className='menu-link' to={'/'}>Вакансии</NavLink>
                         </li>
-                        <li className='menu-item'>
+                        <li onClick={toggleBurger} className='menu-item'>
                             <NavLink className='menu-link' to={'/'}>О компании</NavLink>
                         </li>
                     </ul>

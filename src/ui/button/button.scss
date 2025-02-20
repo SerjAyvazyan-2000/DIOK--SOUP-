@@ -15,10 +15,36 @@
   color: variables.$white;
   transition: .3s;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(variables.$aqua, 0.4) 0%, rgba(variables.$primary, 0.1) 60%);
+    transition: all 0.4s ease-in-out;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    opacity: 0;
+  }
 
   &:hover {
-    opacity: 0.8;
+    opacity: 1;
+    color: variables.$black;
+    background: variables.$white;
+    box-shadow: 0px 4px 20px rgba(variables.$primary, 0.4);
+
+    &:before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
   }
+
   @include mixin.screen-max-width-576{
     width: 100%;
     padding: 16px 21px;
@@ -37,9 +63,34 @@
   color: variables.$white;
   transition: .3s;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(variables.$aqua, 0.4) 0%, rgba(variables.$primary, 0.1) 60%);
+    transition: all 0.4s ease-in-out;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    opacity: 0;
+  }
 
   &:hover {
-    opacity: 0.8;
+    opacity: 1;
+    color: variables.$black;
+    background: variables.$white;
+    box-shadow: 0px 4px 20px rgba(variables.$primary, 0.4);
+
+    &:before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
   }
 
   @include mixin.screen-max-width-576{
@@ -51,6 +102,61 @@
 
 }
 
+.btn-primary-icon{
+  background-color: variables.$primary;
+  padding: 10.5px 26px;
+  border-radius: 99px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: variables.$white;
+  transition: .3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(variables.$aqua, 0.4) 0%, rgba(variables.$primary, 0.1) 60%);
+    transition: all 0.4s ease-in-out;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  &:hover {
+    opacity: 1;
+    color: variables.$black;
+    background: variables.$white;
+    box-shadow: 0px 4px 20px rgba(variables.$primary, 0.4);
+
+    i{
+      background: variables.$black2;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @include mixin.screen-max-width-576{
+    padding: 16px 26px;
+
+  }
+
+
+
+}
 
 
 .btn-border {
@@ -67,6 +173,40 @@
   justify-content: center;
   gap: 20px;
   cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 99px;
+    padding: 2px;
+    -webkit-mask: linear-gradient(variables.$white 0 0) content-box, linear-gradient(variables.$white 0 0);
+    mask: linear-gradient(variables.$white 0 0) content-box, linear-gradient(variables.$white 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    transition: 0.4s ease-in-out;
+  }
+
+  &:hover {
+    color: variables.$black;
+    background: variables.$white;
+    border-color: transparent;
+
+    i{
+      background: variables.$black2;
+    }
+
+    &:before {
+      inset: -4px;
+      background: linear-gradient(140deg, variables.$aqua, variables.$red, variables.$primary);
+    }
+
+    box-shadow: 0 0 15px rgba(variables.$primary, 0.6), 0 0 40px rgba(variables.$aqua, 0.4);
+  }
 
   @include mixin.screen-max-width-576{
     padding: 14.5px 20px;
@@ -75,4 +215,60 @@
   }
 
 
+}
+
+.btn-border-big {
+  border: 1px solid variables.$primary;
+  padding: 18.5px 38.5px;
+  border-radius: 99px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: variables.$white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 99px;
+    padding: 2px;
+    -webkit-mask: linear-gradient(variables.$white 0 0) content-box, linear-gradient(variables.$white 0 0);
+    mask: linear-gradient(variables.$white 0 0) content-box, linear-gradient(variables.$white 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    transition: 0.4s ease-in-out;
+  }
+
+  &:hover {
+    color: variables.$black;
+    background: variables.$white;
+    border-color: transparent;
+
+    &:before {
+      inset: -4px;
+      background: linear-gradient(140deg, variables.$aqua, variables.$red, variables.$primary);
+    }
+
+    box-shadow: 0 0 15px rgba(variables.$primary, 0.6), 0 0 40px rgba(variables.$aqua, 0.4);
+  }
+
+  @include mixin.screen-max-width-576 {
+    padding: 14.5px 20px;
+    width: 100%;
+  }
+
+}
+
+.goTo-icon{
+  font-size: 20px;
+  background-color: variables.$white3;
 }

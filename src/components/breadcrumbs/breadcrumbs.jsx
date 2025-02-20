@@ -1,18 +1,22 @@
 import './breadcrumbs.scss'
 import {NavLink} from "react-router-dom";
+import {useEffect} from "react";
 
 
 const Breadcrumbs = ({next, nextUrl, prevUrl}) => {
+    const productsUrl = nextUrl === '/products';
 
 
-
+    useEffect(() => {
+        console.log(productsUrl)
+    }, [nextUrl]);
 
     return <ul className='breadcrumbs-items G-align-center'>
-        <li className='breadcrumbs-item'>
+        <li className={`breadcrumbs-item ${productsUrl ? 'link-none' : ''}`}>
             <NavLink className='breadcrumbs-link' to={'/home'}>Главная</NavLink>
         </li>
 
-        <li>
+        <li className={` ${productsUrl ? 'link-none' : ''}`}>
             <i className='icon icon-arrow-left2'></i>
         </li>
 
@@ -29,9 +33,12 @@ const Breadcrumbs = ({next, nextUrl, prevUrl}) => {
 
         }
 
-
         <li className='breadcrumbs-item'>
             <NavLink className='breadcrumbs-link' to={`${nextUrl}`}>{next}</NavLink>
+        </li>
+
+        <li className={` ${productsUrl ? 'arrow-visible' : ''}`}>
+            <i className='icon icon-arrow-left2'></i>
         </li>
 
     </ul>

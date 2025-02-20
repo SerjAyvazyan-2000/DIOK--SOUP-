@@ -10,6 +10,9 @@ const Services = () => {
     const [isActive, setIsActive] = useState(true);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -107,7 +110,7 @@ const Services = () => {
                     </div>
                     <div className={`services-list  ${isActive ? "active" : ""}`}>
                         {services.map((service, index) => (
-                            <Card item={service} index={index}/>
+                            <Card key={index} item={service} index={index}/>
                         ))}
 
                     </div>
