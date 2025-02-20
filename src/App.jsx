@@ -1,5 +1,5 @@
 import './App.scss'
-import {Route, Routes, useLocation} from "react-router-dom";
+import {Route, Routes, useLocation,Navigate } from "react-router-dom";
 import Header from "./components/header/header.jsx";
 import Home from "./pages/home/home.jsx";
 import Footer from "./components/footer/footer.jsx";
@@ -14,11 +14,12 @@ function App() {
 
         <main className='main'>
             <Routes>
-                <Route path="*" element={<Home/>}/>
+                <Route path="/" element={<Navigate to="/home" replace />} />
 
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/services" element={<Services/>}/>
                 <Route path="/servicesDetails" element={<ServiceDetails/>}/>
+                <Route path="*" element={<Home/>}/>
 
 
             </Routes>

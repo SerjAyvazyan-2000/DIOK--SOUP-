@@ -53,8 +53,8 @@
   text-transform: uppercase;
 
   @include mixin.screen-max-width-576 {
-    font-size: 35px;
-    line-height: 40px;
+    font-size: 40px;
+    line-height: 52px;
     font-weight: 500;
 
   }

@@ -39,10 +39,10 @@ const Header = () => {
                 <nav className={`menu ${isActive ? "active" : ""}`}>
                     <ul className='menu-list G-align-center'>
                         <li className='menu-item'>
-                            <NavLink className='menu-link' to={'/services'}>Услуги</NavLink>
+                            <NavLink className='menu-link' to={'/services'} end>Услуги</NavLink>
                         </li>
                         <li className='menu-item'>
-                            <NavLink className='menu-link' to={'/'}>Продукты</NavLink>
+                            <NavLink className='menu-link' to={'/'} end>Продукты</NavLink>
                         </li>
                         <li className='menu-item'>
                             <NavLink className='menu-link' to={'/'}>Вакансии</NavLink>
