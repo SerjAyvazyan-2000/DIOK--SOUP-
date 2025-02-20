@@ -1,0 +1,45 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.breadcrumbs-items {
+  gap: 20px;
+  flex-wrap: wrap;
+
+  @include mixin.screen-max-width-576{
+    gap: 10px;
+
+  }
+
+}
+
+.breadcrumbs-link {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: variables.$gray6;
+  transition: .3s;
+
+  &.active {
+    color: variables.$white5;
+
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: variables.$white5;
+
+  }
+
+  @include mixin.screen-max-width-576{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+
+  }
+}
+
+.icon-arrow-left2 {
+  font-size: 12px;
+  background: variables.$gray6;
+
+}

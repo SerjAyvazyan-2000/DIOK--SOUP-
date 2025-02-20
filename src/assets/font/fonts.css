@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Black.woff') format('woff'),
+    local('Gilroy-Black.woff');
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Bold.woff') format('woff'),
+    local('Gilroy-Bold.woff');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Sen';
+    src: url('Sen-Regular.woff') format('woff'),
+    local('Sen-Regular.woff');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Sen';
+    src: url('Sen-SemiBold.woff') format('woff'),
+    local('Sen-SemiBold.woff');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Medium.woff') format('woff'),
+    local('Gilroy-Medium.woff');
+    font-weight: 500;
+}

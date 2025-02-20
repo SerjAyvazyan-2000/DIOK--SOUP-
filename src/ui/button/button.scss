@@ -1,0 +1,78 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.button{
+  background: transparent;
+}
+.btn-primary {
+  background-color: variables.$primary;
+  padding: 8px 21px;
+  border-radius: 99px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: variables.$white;
+  transition: .3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+  @include mixin.screen-max-width-576{
+    width: 100%;
+    padding: 16px 21px;
+
+  }
+}
+
+.big-btn-primary {
+  background-color: variables.$primary;
+  padding: 15px 28px;
+  border-radius: 99px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: variables.$white;
+  transition: .3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include mixin.screen-max-width-576{
+    width: 100%;
+    padding: 16px 28px;
+
+  }
+
+
+}
+
+
+
+.btn-border {
+  border: 1px solid variables.$primary;
+  padding: 10.5px 20px;
+  border-radius: 99px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  color: variables.$white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+
+  @include mixin.screen-max-width-576{
+    padding: 14.5px 20px;
+    width: 100%;
+
+  }
+
+
+}

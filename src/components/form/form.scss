@@ -1,0 +1,178 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+
+.form-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+
+}
+
+.form-body {
+  gap: 48px;
+  padding: 64px 0;
+
+  @include mixin.screen-max-width-991 {
+    flex-direction: column;
+  }
+
+  @include mixin.screen-max-width-767 {
+    padding: 32px 0 42px 0 ;
+  }
+}
+
+.form-titles {
+  max-width: 566px;
+  width: 100%;
+  min-height: 579px;
+
+  @include mixin.screen-max-width-991 {
+    gap: 24px;
+    min-height: max-content;
+
+  }
+
+
+}
+
+.form {
+  max-width: 566px;
+  width: 100%;
+
+  @include mixin.screen-max-width-991 {
+    max-width: 100%;
+
+  }
+}
+
+.form-title {
+  font-weight: 600;
+  font-size: 54px;
+  line-height: 60.2px;
+  color: variables.$white;
+  text-transform: uppercase;
+
+  @include mixin.screen-max-width-576 {
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: 500;
+
+  }
+
+
+}
+
+.services-form-title {
+  font-weight: 400;
+
+}
+.details-form-title{
+  font-weight: 400;
+
+}
+
+.form-clue {
+  margin-top: auto;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: variables.$white;
+
+  p {
+    display: flex;
+    gap: 3px;
+
+    @include mixin.screen-max-width-576{
+      display: inline;
+    }
+
+  }
+
+  a {
+    color: variables.$primary;
+  }
+
+  @include mixin.screen-max-width-576 {
+    font-size: 20px;
+    line-height: 30px;
+
+  }
+}
+
+.form-inputs-block {
+  gap: 24px;
+
+  @include mixin.screen-max-width-576 {
+    gap: 20px;
+  }
+}
+
+.form-inputs {
+  gap: 24px;
+
+  @include mixin.screen-max-width-576 {
+    gap: 20px;
+    flex-direction: column;
+  }
+
+}
+
+.form-agree {
+  cursor: pointer;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.agree-icon {
+  border-radius: 4px;
+  border: 1px solid variables.$gray5;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  flex: 0 0 16px;
+  margin-top: -2px;
+
+  img {
+    display: none
+  }
+}
+
+.form-agree.checked .agree-icon img {
+  display: flex;
+
+}
+
+.form-agree.checked .agree-icon {
+  border: none;
+
+}
+
+.agree-text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+  color: variables.$white4;
+
+  a {
+    color: variables.$gray3;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    transition: .3s;
+    display: inline;
+
+    &:hover {
+      color: variables.$primary;
+    }
+
+  }
+}
+
+.form-submit {
+  margin-top: 8px;
+  display: flex;
+
+}

@@ -1,0 +1,186 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+
+.services-breadcrumbs {
+  margin-top: 152px;
+  @include mixin.screen-max-width-576 {
+    margin-top: 92px;
+  }
+}
+
+.services-share {
+  padding: 10px 0 0;
+
+  @include mixin.screen-max-width-576 {
+    display: none;
+  }
+
+}
+
+.services-top-section {
+  margin-top: 70px;
+
+  @include mixin.screen-max-width-576{
+    margin-top: 29px;
+
+  }
+}
+
+.services-title {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 96px;
+  color: variables.$white3;
+
+  @include mixin.screen-max-width-576 {
+    font-size: 32px;
+    line-height: 48px;
+
+  }
+
+}
+
+.services-sub-title {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38.4px;
+  letter-spacing: 1.4px;
+  color: variables.$gray2;
+  @include mixin.screen-max-width-576 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+
+  }
+}
+
+.services-list-title {
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 72px;
+  color: variables.$white3;
+
+  @include mixin.screen-max-width-576 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+
+
+  }
+
+}
+
+.services-count {
+  gap: 5px;
+  margin-top: 64px;
+  padding: 12px 14px;
+  border-radius: 99px;
+  background: variables.$gray8;
+  max-width: max-content;
+
+  @include mixin.screen-max-width-576 {
+    margin-top: 20px;
+    padding: 10px 18px;
+
+  }
+
+  span {
+    padding: 2px 8px;
+    background: variables.$green;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: variables.$white3;
+
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: variables.$white6;
+
+  }
+}
+
+.services-section {
+  margin-top: 64px;
+  padding-bottom: 120px;
+}
+
+.services-list {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  row-gap: 32px;
+
+  @include mixin.screen-max-width-576 {
+    gap: 0;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0;
+    transition: .3s;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      max-height: 15000px;
+      gap: 24px;
+      margin-top: 32px;
+
+    }
+  }
+
+}
+
+
+
+.services-list-header {
+  gap: 8px;
+
+  i {
+    transition: .3s;
+  }
+
+  &.active {
+
+    i {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.services-items-count {
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: variables.$gray9;
+
+  span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: variables.$gray2;
+
+  }
+}
+
+.mobile-block {
+  display: none;
+  @include mixin.screen-max-width-576 {
+    display: block;
+  }
+}
+
+.product-services{
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+}

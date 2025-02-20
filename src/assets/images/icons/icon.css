@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.icon {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+}
+.icon-trends1{
+    mask-image: url(trends1.svg);
+    -webkit-mask-image: url(trends1.svg);
+}
+.icon-trends2{
+    mask-image: url(trends2.svg);
+    -webkit-mask-image: url(trends2.svg);
+}
+.icon-trends3{
+    mask-image: url(trends3.svg);
+    -webkit-mask-image: url(trends3.svg);
+}
+.icon-arrow-left{
+    mask-image: url(arrowLeft.svg);
+    -webkit-mask-image: url(arrowLeft.svg);
+}
+.icon-arrow-left2{
+    mask-image: url(arrowLeft2.svg);
+    -webkit-mask-image: url(arrowLeft2.svg);
+}
+.icon-required{
+    mask-image: url(required.svg);
+    -webkit-mask-image: url(required.svg);
+}
+.icon-share{
+    mask-image: url(share.svg);
+    -webkit-mask-image: url(share.svg);
+}
+.services-arrow-down{
+    mask-image: url(servicesArrowDown.svg);
+    -webkit-mask-image: url(servicesArrowDown.svg);
+}
+
+
+.order-arrow{
+    mask-image: url(servicesArrowDown.svg);
+    -webkit-mask-image: url(servicesArrowDown.svg);
+}
+
+.numbers-icon{
+    mask-image: url(numbersIcon.svg);
+    -webkit-mask-image: url(numbersIcon.svg);
+
+}

@@ -1,0 +1,15 @@
+@use 'assets/scss/variables';
+@use 'assets/scss/mixin';
+
+#root {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+}#root
+
+.main {
+  flex: 1 1 auto;
+}
+
