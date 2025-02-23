@@ -71,13 +71,23 @@ const Company = () => {
         { name: "Kanban", className: "primary-language" },
 
     ];
-    const infiniteLanguages = [...Array(10)].flatMap(() => languages);
 
+    const uniqueLanguages = [...new Set(languages.map(lang => lang.name))] // Берем только уникальные языки
 
+    const infiniteLanguages = [...Array(10)].flatMap(() =>
+        uniqueLanguages.map(name => languages.find(lang => lang.name === name))
+    );
 
     const shuffleArray = (array) => {
-        return array.sort(() => Math.random() - 0.5);
+        let shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
     };
+
+
     return <>
         <section className='company-section'>
             <div className='container'>
