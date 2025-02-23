@@ -30,8 +30,10 @@ const ServiceDetails = () => {
 
 
     const handleItemClick = (index,name) => {
-        setActiveIndex(index === activeIndex ? null : index);
-        setName(name)
+        if (activeIndex !== index) {
+            setActiveIndex(index);
+            setName(name);
+        }
     };
 
     const handleOpenServices = () => {
