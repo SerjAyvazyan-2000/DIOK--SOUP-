@@ -214,7 +214,7 @@ const Company = () => {
                     <div className='results-items G-flex'>
                         <div className='results-item G-flex-column'>
                             <h3 className='page-item-title'>Рост чистой прибыли</h3>
-                            <p className='page-item-text'>
+                            <p className='company-page-text page-item-text'>
                                 Увеличение производительности
                                 Расширение рынков сбыта Выстроена система управления предприятием
                             </p>
@@ -223,7 +223,7 @@ const Company = () => {
 
                         <div className='results-item G-flex-column'>
                             <h3 className='page-item-title'>Высвобождение времени</h3>
-                            <p className='page-item-text'>
+                            <p className='company-page-text page-item-text'>
                                 Выстроена система управления ТОП-менеджерами и руководителями. Выход из
                                 микроменеджмента, без потери контроля
                             </p>
@@ -233,7 +233,7 @@ const Company = () => {
 
                         <div className='results-item G-flex-column'>
                             <h3 className='page-item-title'>Сокращение рисков</h3>
-                            <p className='page-item-text'>
+                            <p className='company-page-text page-item-text'>
                                 От НЕкачественных или НЕсвоевременных решений. Ресурс на развитие и масштабирование
                                 бизнеса.
                             </p>
