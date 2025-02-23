@@ -72,7 +72,7 @@ const Company = () => {
 
     ];
 
-    const uniqueLanguages = [...new Set(languages.map(lang => lang.name))] // Берем только уникальные языки
+    const uniqueLanguages = [...new Set(languages.map(lang => lang.name))]
 
     const infiniteLanguages = [...Array(10)].flatMap(() =>
         uniqueLanguages.map(name => languages.find(lang => lang.name === name))

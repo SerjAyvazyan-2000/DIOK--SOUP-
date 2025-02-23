@@ -168,7 +168,12 @@
 .support-language-column {
   gap: 24px;
   justify-content: center;
-  animation: scrollLeft 150s linear infinite;
+  animation: scrollLeft 100s linear infinite;
+
+  @include mixin.screen-max-width-576{
+    animation: scrollLeft 60s linear infinite;
+
+  }
 
 }
 
@@ -176,7 +181,12 @@
 
 
 .support-language-column:nth-child(even) {
-  animation: scrollRight 150s linear infinite;
+  animation: scrollRight 100s linear infinite;
+
+  @include mixin.screen-max-width-576{
+    animation: scrollRight 60s linear infinite;
+
+  }
 }
 
 @keyframes scrollLeft {
