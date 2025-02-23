@@ -1,0 +1,287 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.company-section {
+  padding: 272px 0 23px 0;
+  min-height: 780px;
+  position: relative;
+
+  @include mixin.screen-max-width-767 {
+    padding: 192px 0 0 0;
+
+  }
+
+  @include mixin.screen-max-width-576 {
+    min-height: 568px;
+
+  }
+}
+
+.company-sub-title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  color: variables.$gray2;
+  margin-top: 24px;
+
+  @include mixin.screen-max-width-767 {
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+
+  }
+
+}
+
+.company-hero-info {
+  margin-top: 56px;
+
+}
+.company-hero-title{
+  @include mixin.screen-max-width-576{
+    font-size: 32px;
+    line-height: 38.4px;
+    letter-spacing: 2px;
+  }
+}
+.company-hero-btn {
+  margin-top: 56px;
+
+
+  a{
+    width: max-content;
+    padding: 10.5px 20px;
+  }
+
+}
+
+.working-clients-section {
+  margin-top: 80px;
+}
+
+.working-clients-items {
+  margin-top: 52px;
+  flex-wrap: wrap;
+  gap: 24px;
+
+}
+
+.working-item-img {
+  margin: 0 auto;
+}
+
+.working-clients-item {
+  flex: 1 1 23.5%;
+  background: variables.$black3;
+  border: 1px solid variables.$gray;
+  border-radius: 16px;
+  position: relative;
+  min-height: 455px;
+  justify-content: space-between;
+
+  @include mixin.screen-max-width-991 {
+    flex: 1 1 45%;
+
+  }
+  @include mixin.screen-max-width-991 {
+    flex: 1 1 50%;
+
+  }
+}
+
+.working-item-texts {
+  padding: 32px 24px 10px 24px;
+
+}
+
+.working-img-p {
+  padding: 0 20px 29px 20px;
+
+  @include mixin.screen-max-width-576{
+    padding: 0;
+  }
+}
+
+.results-section {
+  margin-top: 120px;
+
+}
+
+.results-items {
+  margin-top: 32px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.results-item {
+  flex: 1 1 30%;
+  background: variables.$black3;
+  border: 1px solid variables.$gray;
+  border-radius: 16px;
+  position: relative;
+  min-height: 185px;
+  padding: 32px 24px 24px 24px;
+
+  @include mixin.screen-max-width-991{
+    flex: 1 1 35%;
+
+  }
+  @include mixin.screen-max-width-767{
+    flex: 1 1 50%;
+
+  }
+}
+
+.support-title {
+  margin: 0 auto;
+  max-width: 1312px;
+  width: 100%;
+  padding: 0 20px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.support-section {
+  margin-top: 120px;
+}
+.support-body{
+  overflow: hidden;
+  padding-bottom: 168px;
+
+}
+
+.support-container {
+  max-width: 2920px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.support-languages {
+  margin-top: 54px;
+  gap: 54px;
+}
+
+.support-language-column {
+  gap: 24px;
+  justify-content: center;
+  animation: scrollLeft 150s linear infinite;
+
+}
+
+
+
+
+.support-language-column:nth-child(even) {
+  animation: scrollRight 150s linear infinite;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-70%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-70%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+
+
+.language-item {
+  padding: 14px 28px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+  }
+}
+
+.rose-language {
+  background: variables.$rose;
+  color: variables.$darkAqua;
+  box-shadow: 0 0 50px variables.$rose;
+  min-width: 93px;
+
+}
+
+.gray-language {
+  background: variables.$gray8;
+  color: variables.$white6;
+  box-shadow: 0 0 10px variables.$gray8, 0 0 10px rgba(255, 255, 255, 0.6);
+  position: relative;
+  overflow: hidden;
+  min-width: 96px;
+
+}
+.big-gray{
+  min-width: 185px;
+
+}
+
+.gray-language::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+.primary-language {
+  background: variables.$aqua2;
+  color: variables.$white3;
+  box-shadow: 0 0 50px variables.$aqua2;
+  min-width: 117px;
+
+}
+.big-primary{
+  min-width: 175px;
+
+}
+
+.orange-language{
+  background: variables.$orange;
+  color: variables.$darkAqua;
+  box-shadow: 0 0 50px variables.$orange;
+  min-width: 108px;
+
+}
+.red-language{
+  background: variables.$red2;
+  color: variables.$darkAqua;
+  box-shadow: 0 0 50px variables.$red2;
+  min-width: 114px;
+
+}
+.big-red{
+  min-width: 175px;
+
+}
+
+
+@keyframes scrollRightColumn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

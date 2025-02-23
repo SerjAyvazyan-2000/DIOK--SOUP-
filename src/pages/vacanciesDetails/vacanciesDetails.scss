@@ -1,0 +1,48 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+
+.vacancies-details-breadcrumbs {
+  margin-top: 136px;
+  @include mixin.screen-max-width-576 {
+    margin-top: 92px;
+  }
+}
+
+
+.vacancies-top-body {
+  margin-top: 70px;
+
+  @include mixin.screen-max-width-576 {
+    margin-top: 24px;
+
+  }
+}
+
+.vacancies-section {
+  margin-top: 56px;
+
+  @include mixin.screen-max-width-576{
+    margin-top: 48px;
+
+  }
+}
+
+
+.vacancies-list {
+  flex-wrap: wrap;
+  column-gap: 24px;
+  row-gap: 56px;
+
+  @include mixin.screen-max-width-576{
+    gap: 48px;
+  }
+}
+
+
+.details-directions-section{
+  margin-top: 56px;
+  padding-bottom: 120px;
+  border-bottom: 1px solid variables.$gray;
+
+}

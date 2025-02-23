@@ -75,3 +75,12 @@
     -webkit-mask-image: url(stepIcon3.svg);
 }
 
+.icon-share2{
+    mask-image: url(share2.svg);
+    -webkit-mask-image: url(share2.svg);
+}
+.icon-arrow-down{
+    mask-image: url(arrowDown.svg);
+    -webkit-mask-image: url(arrowDown.svg);
+
+}

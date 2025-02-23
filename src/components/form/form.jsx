@@ -6,10 +6,10 @@ import box from '../../assets/images/box.svg'
 import {NavLink} from "react-router-dom";
 import Button from "../../ui/button/button.jsx";
 
-const Form = ({titleClass}) => {
+const Form = ({titleClass,blockClass}) => {
     const [checked, setChecked] = useState(false);
 
-    return <section className='form-section'>
+    return <section className={` ${blockClass  ?  blockClass : ' form-section' }`}>
         <div className='container'>
             <div className='form-body G-flex'>
                 <div className='form-titles G-flex-column'>
@@ -17,9 +17,8 @@ const Form = ({titleClass}) => {
                        Давайте <span className='text-wrap'>реализуем вашу</span> идею вместе
                    </h2>
                     <div className='form-clue'>
-                        Заполните форму или напишите нам на почту или
-                        <p className='text-wrap '>
-                            <span>напиши нам на почту:</span>
+                        Заполните форму или напишите нам на почту:
+                        <p>
                             <a href="mailto:sales@dioc.tech">sales@dioc.tech</a>
                         </p>
 
@@ -62,7 +61,6 @@ const Form = ({titleClass}) => {
 
                         <div className='form-input'>
                             <Textarea placeholder='Расскажите коротко' title='Ваш вопрос или предложения'/>
-
                         </div>
                         <div className={`form-agree  G-align-center ${checked ? "checked" : ""}`}
                              onClick={() => setChecked(!checked)}>

@@ -1,23 +1,18 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.jsx";
 import './products.scss'
 import Form from "../../components/form/form.jsx";
-import {useEffect, useState} from "react";
 import logo from '../../assets/images/logo2.svg'
 import productsImg from '../../assets/images/productsPicture.webp'
-
-
 import {Link} from "react-router-dom";
-import Button from "../../ui/button/button.jsx";
+import CustomLink from "../../ui/customLink/link.jsx";
 const Products = () => {
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+
 
 
     return <>
         <section className='products-breadcrumbs'>
-            <div className='breadcrumbs-container'>
+            <div className='big-container'>
                 <div className='breadcrumbs-body G-align-center'>
                     <Breadcrumbs nextUrl={'/products'} next={'Продукты '}/>
                 </div>
@@ -26,7 +21,7 @@ const Products = () => {
         </section>
 
         <section className='products-top-section'>
-            <div className='breadcrumbs-container'>
+            <div className='big-container'>
                 <div className='products-top-body'>
                     <div className='products-titles'>
                         <h1 className='products-title'>ПРОДУКТЫ</h1>
@@ -41,13 +36,19 @@ const Products = () => {
 
 
         <section className='products-info-section'>
-            <div className='breadcrumbs-container'>
+            <div className='big-container'>
                 <div className='products-info'>
                     <div className='products-info-header G-align-center'>
-                        <Link className='products-logo G-flex' to={'/home'}>
+                        <div className='products-logo G-flex'>
                             <img src={logo} alt="logo"/>
-                        </Link>
-                        <Button variant='btn-primary-icon' text={'Перейти на сайт'} icon={'goTo-icon'}/>
+                        </div>
+                        <CustomLink
+                            variant={'link-primary-icon'}
+                            text={'Перейти на сайт'}
+                            icon={'goTo-icon'}
+                            blank={true}
+                            url={'https://dioc-knowledge.vercel.app/'}
+                        />
                     </div>
 
                     <div className='products-info-items G-flex'>

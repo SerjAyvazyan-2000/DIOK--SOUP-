@@ -4,8 +4,6 @@ import {Link, useLocation} from "react-router-dom";
 import detailsItemActive from "../../assets/images/detailsItemActive.webp";
 import detailsImg from "../../assets/images/detailsImg.webp";
 import detailsImgMobile from "../../assets/images/detailsImgMobile.png";
-
-
 import numbersItemDecor from "../../assets/images/numbersItemDecor.webp";
 import gazprom from "../../assets/images/gazprom.svg";
 import dodoPizza1 from "../../assets/images/dodoPizza1.svg";
@@ -14,26 +12,32 @@ import ministry from "../../assets/images/ministry.svg";
 import clientsDecor from "../../assets/images/clientsDecor.png";
 import casesItemDecor from "../../assets/images/casesItemDecor.png";
 import advantagesItemDecor from "../../assets/images/advantagesItemDecor.png";
-
-
 import {useEffect, useState} from "react";
 import Card from "../../components/card/card.jsx";
 import Form from "../../components/form/form.jsx";
 import Button from "../../ui/button/button.jsx";
+import ServiceProducts from "../../components/serviceProducts/serviceProducts.jsx";
+import Modal from "../../ui/modal/modal.jsx";
+import Order from "../../components/order/order.jsx";
 
 const ServiceDetails = () => {
     const [isActive, setIsActive] = useState(true);
-    const [activeIndex, setActiveIndex] = useState(null);
-    const location = useLocation();
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [order, setOrder] = useState(false);
+    const [title, setTitle] = useState('');
+    const [name, setName] = useState('');
 
 
-    const handleItemClick = (index) => {
+
+    const handleItemClick = (index,name) => {
         setActiveIndex(index === activeIndex ? null : index);
+        setName(name)
     };
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location]);
+    const handleOpenServices = () => {
+        setIsActive(!isActive)
+    };
+
 
 
     const services = [
@@ -75,10 +79,36 @@ const ServiceDetails = () => {
 
     ];
 
+    const products = [
+        {id: 1, name: 'Лендинг', link: '/'},
+        {id: 2, name: 'Корпоративный сайт', link: '/'},
+        {id: 3, name: 'Интернет магазин', link: '/'},
+        {id: 4, name: 'Маркетплейс', link: '/'},
+        {id: 5, name: 'Выделенные рабочие места', link: '/'},
+        {id: 6, name: 'Корпоративные и клиентские порталы', link: '/'},
+        {id: 7, name: 'Интранет решения', link: '/'},
+        {id: 8, name: 'Стартап', link: '/'}
+    ];
+
+    useEffect(() => {
+        if (order) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+    }, [order]);
+
+    const handleOrder = (name) => {
+
+        setOrder(!order);
+        setTitle(name || '');
+
+    }
+
 
     return <>
         <section className='services-details-breadcrumbs'>
-            <div className='breadcrumbs-container'>
+            <div className='big-container'>
                 <div className='breadcrumbs-body G-align-center'>
                     <Breadcrumbs
                         prevUrl='Услуги '
@@ -96,10 +126,11 @@ const ServiceDetails = () => {
 
 
         <section className='service-details-info'>
-            <div className='breadcrumbs-container'>
+            <div className='big-container'>
                 <div className='service-details-body G-flex'>
                     <div className='services-details-list'>
-                        <div className='details-list-titles G-align-center'>
+                        <div onClick={handleOpenServices}
+                             className={`details-list-titles ${isActive ? 'active' : ''}  G-align-center`}>
                             <h3>Аутсорсинг</h3>
                             <div className='details-list-count G-center'>
                                 <span>20</span>
@@ -107,13 +138,12 @@ const ServiceDetails = () => {
                             <i className='icon services-arrow-down '></i>
 
                         </div>
-
                         <div className={`services-details-items  ${isActive ? "active" : ""}`}>
                             {services.map((service, index) => (
                                 <div
                                     key={index}
                                     className={`services-details-item ${activeIndex === index ? "active" : ""}`}
-                                    onClick={() => handleItemClick(index)}>
+                                    onClick={() => handleItemClick(index,service.title)}>
 
                                     <h4>{service.title}</h4>
                                     <div className='service-active-decor'>
@@ -129,10 +159,10 @@ const ServiceDetails = () => {
                     <div className='service-details-description'>
 
                         <div className='details-media G-flex-column'>
-                            <h3 className='details-name'>Разработка <span className='text-wrap'>сайтов</span></h3>
+                            <h3 className='details-name'> {name || 'Разработка сайтов' }</h3>
                             <div className='details-price G-align-center'>
                                 <p>От</p>
-                                <p>600000,00 ₽</p>
+                                <p>600 000,00 ₽</p>
                             </div>
 
                             <div className='details-img G-flex'>
@@ -152,72 +182,10 @@ const ServiceDetails = () => {
                             </p>
                         </div>
 
-                        <div className='product-services'>
-                            <Link to={'/'} className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Лендинг</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
+                        {products && products.length > 0 && (
+                            <ServiceProducts onclick={handleOrder} products={products}/>
+                        )}
 
-                            <Link to='/' className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Корпоративный сайт</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
-
-                            <Link to='/' className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Интернет магазин</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
-
-                            <Link to='/' className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Маркетплейс</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
-
-                            <Link to='/' className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Выделенные рабочие места</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
-
-                            <Link to='/' className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Корпоративные и клиентские порталы</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
-
-                            <Link to='/' className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Интранет решения</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
-
-                            <Link to='/' className='product-service G-flex-column'>
-                                <h4 className='product-service-name'>Стартап</h4>
-                                <div className='service-order G-align-center'>
-                                    <p>Заказать</p>
-                                    <i className='icon order-arrow'></i>
-                                </div>
-                            </Link>
-
-                        </div>
 
                         <div className='about-us-numbers'>
                             <h4 className='details-about-title'>// О НАС В ЦИФРАХ</h4>
@@ -315,8 +283,8 @@ const ServiceDetails = () => {
                                                 <span className='cases-info-title'>функционал:</span>
                                                 — ИИ система монтажа и подготовки <b
                                                 className='desktop-text-wrap'>материалов</b>
-                                               <b className='mobile-text-wrap'> — Пользовательский интерфейс с ролевой
-                                                персонализацие й</b>
+                                                <b className='mobile-text-wrap'> — Пользовательский интерфейс с ролевой
+                                                    персонализацие й</b>
                                                 <b className='text-wrap'>— Создание сценариев монтажа материалов</b>
                                                 — Система распознавания лиц (Цели -
                                                 афроамериканцы, азиаты, арабы до 16 лет)
@@ -594,6 +562,11 @@ const ServiceDetails = () => {
         </section>
 
         <Form titleClass={'details-form-title'}/>
+
+
+        <Modal close={() => handleOrder()} active={order}>
+            <Order title={title} close={() => handleOrder()}/>
+        </Modal>
 
     </>
 };

@@ -1,8 +1,8 @@
 import './button.scss'
 
 
-const Button = ({variant,text,icon}) => {
-    return <button className={`button ${variant}`}>
+const Button = ({variant,text,icon,onClick}) => {
+    return <button onClick={onClick} className={`button ${variant}`}>
         <span>{text}</span>
         {icon && <i className={`icon ${icon}`}></i>}
 

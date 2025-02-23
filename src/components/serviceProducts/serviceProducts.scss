@@ -1,0 +1,60 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.product-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.product-service {
+  flex: 1 1 24%;
+  min-height: 183px;
+  border: 1px solid variables.$gray;
+  padding: 16px 16px 18px 16px;
+  border-radius: 16px;
+  gap: 10px;
+  justify-content: space-between;
+
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  @include mixin.screen-max-width-767 {
+    flex: 1 1 32%;
+
+  }
+  @include mixin.screen-max-width-576 {
+    flex: 1 1 50%;
+    min-height: 140px;
+
+
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    background: variables.$aqua;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-color: transparent;
+  }
+}
+
+.product-service-name {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20.8px;
+  color: variables.$white3;
+
+}
+
+.service-order {
+  gap: 13px;
+
+  p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: variables.$white6;
+
+  }
+}

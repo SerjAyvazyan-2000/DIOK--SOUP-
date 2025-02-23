@@ -2,17 +2,31 @@ import './home.scss'
 import Button from "../../ui/button/button.jsx";
 import heroDecor from '../../assets/images/heroDecor.webp'
 import heroDecorMobile from '../../assets/images/heroDecorMobile.webp'
-
 import Form from "../../components/form/form.jsx";
 import Cookie from "../../components/cookie/cookie.jsx";
-import {Link} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import CustomLink from "../../ui/customLink/link.jsx";
+import Modal from "../../ui/modal/modal.jsx";
 
 const Home = () => {
+    const [feedback, setFeedback] = useState(false);
+
+
+
+
+    const handleFeedback = () => {
+        setFeedback(!feedback);
+
+    }
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+        if (feedback) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+    }, [feedback]);
+
     return <>
         <section className='hero-section'>
             <div className='container'>
@@ -21,7 +35,7 @@ const Home = () => {
                         <h1 className='hero-title'>Инновации для бизнеса</h1>
                         <p className='hero-sub-title'>Инновационные ИТ-решения для вашего успеха. Узнайте о наших
                             <span
-                                className='desktop-text-wrap'>технологиях для оптимизации производительности и роста</span>
+                                className='desktop-text-wrap'> технологиях для оптимизации производительности и роста</span>
                         </p>
 
                     </div>
@@ -32,7 +46,7 @@ const Home = () => {
                                 результаты для вашего бизнеса.</p>
                         </div>
 
-                        <Button text={'Связаться в 1 клик'} variant='btn-primary'/>
+                        <Button onClick={handleFeedback} text={'Связаться в 1 клик'} variant='btn-primary'/>
                     </div>
                 </div>
             </div>
@@ -114,10 +128,8 @@ const Home = () => {
                     </div>
 
                     <div className='trends-btn '>
-                        <Link className='btn-border' to={'/services'}>
-                            <span>Все услуги</span>
-                            <i className='icon icon-arrow-left'></i>
-                        </Link>
+
+                        <CustomLink variant={'link-border'} icon={'icon-arrow-left'} text={'Все услуги'} url={'/services'}/>
                     </div>
                 </div>
             </div>
@@ -183,6 +195,10 @@ const Home = () => {
         <Form/>
 
         <Cookie/>
+
+        <Modal close={() => handleFeedback()} active={feedback}>
+            <Form blockClass={'modal-form-block'}/>
+        </Modal>
 
     </>
 };

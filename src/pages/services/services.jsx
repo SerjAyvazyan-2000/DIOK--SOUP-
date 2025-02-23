@@ -1,35 +1,16 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.jsx";
 import './services.scss'
-import {Link} from "react-router-dom";
-import servicesItemDecor from '../../assets/images/servicesItemDecor.webp'
 import Form from "../../components/form/form.jsx";
 import {useEffect, useState} from "react";
 import Card from "../../components/card/card.jsx";
 
 const Services = () => {
     const [isActive, setIsActive] = useState(true);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 576);
-            if (window.innerWidth > 576) {
-                setIsActive(false);
-            }
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     const toggleServicesList = () => {
-        if (isMobile) {
-            setIsActive(!isActive);
-        }
+        setIsActive(!isActive);
     };
 
 
@@ -64,7 +45,7 @@ const Services = () => {
 
     return <>
         <section className='services-breadcrumbs'>
-            <div className='breadcrumbs-container'>
+            <div className='big-container'>
                 <div className='breadcrumbs-body G-align-center'>
                     <Breadcrumbs nextUrl={'/services'} next={'Услуги '}/>
                     <div className=' services-share share G-align-center'>
@@ -77,7 +58,7 @@ const Services = () => {
         </section>
 
         <section className='services-top-section'>
-            <div className='big-container'>
+            <div className='average-container'>
                 <div className='services-top-body'>
                     <div className='services-titles'>
                         <h1 className='services-title'>УСЛУГИ</h1>
@@ -98,7 +79,7 @@ const Services = () => {
 
 
         <section className='services-section'>
-            <div className='big-container'>
+            <div className='average-container'>
                 <div className='services-body'>
                     <div onClick={toggleServicesList}
                          className={`services-list-header G-align-center ${isActive ? "active" : ""}`}>
@@ -106,7 +87,7 @@ const Services = () => {
                         <div className='services-items-count mobile-block'>
                             <span>20</span>
                         </div>
-                        <i className='icon services-arrow-down mobile-block'></i>
+                        <i className='icon services-arrow-down '></i>
                     </div>
                     <div className={`services-list  ${isActive ? "active" : ""}`}>
                         {services.map((service, index) => (

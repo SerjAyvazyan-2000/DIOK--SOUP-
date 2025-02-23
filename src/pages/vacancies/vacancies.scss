@@ -1,0 +1,157 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.vacancies-hero-section {
+  padding: 272px 0 0 0;
+  min-height: 827px;
+  position: relative;
+
+  @include mixin.screen-max-width-767 {
+    padding: 192px 0 0 0;
+
+  }
+
+  @include mixin.screen-max-width-576 {
+    min-height: max-content;
+    padding: 192px 0 80px 0;
+
+  }
+}
+
+.vacancies-hero-title {
+
+  @include mixin.screen-max-width-576 {
+    font-size: 32px;
+    line-height: 38.4px;
+
+
+  }
+}
+
+
+.vacancies-clues {
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 56px;
+
+  @include mixin.screen-max-width-576{
+    .order-4{
+      order: 4;
+    }
+    .order-2{
+      order: 2;
+
+    }
+    .order-3{
+      order: 3;
+
+    }
+  }
+}
+
+
+.vacancies-clue {
+  padding: 10.5px 20px;
+  border: 1px solid variables.$primary;
+  border-radius: 99px;
+  display: flex;
+
+
+  span {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: variables.$white6;
+
+  }
+}
+
+.desktop-clue{
+
+  @include mixin.screen-max-width-576{
+    display: none;
+  }
+}
+
+.waiting-items {
+  margin-top: 52px;
+  flex-wrap: wrap;
+  gap: 24px;
+
+}
+
+.waiting-item-img {
+  margin: 0 auto;
+}
+
+.waiting-item {
+  flex: 1 1 23.5%;
+  background: variables.$black3;
+  border: 1px solid variables.$gray;
+  border-radius: 16px;
+  position: relative;
+  min-height: 455px;
+  justify-content: space-between;
+
+  @include mixin.screen-max-width-1200 {
+    flex: 1 1 35%;
+
+  }
+
+  @include mixin.screen-max-width-767 {
+    flex: 1 1 50%;
+
+  }
+
+}
+
+.waiting-item-texts {
+  padding: 32px 24px 10px 24px;
+
+}
+
+
+.we-waiting-section {
+  margin-top: 120px;
+}
+
+
+.we-waiting-items {
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.we-waiting-item {
+  flex: 1 1 46%;
+  padding: 32px;
+  background: radial-gradient(250.02% 460.69% at 72.62% -40.65%, #444CE7 0%, rgba(0, 0, 0, 0) 20%);
+  border: 1px solid variables.$gray;
+  border-radius: 16px;
+
+  @include mixin.screen-max-width-991 {
+    flex: 1 1 100%;
+    background: radial-gradient(250.02% 360.69% at 72.62% -40.65%, #444CE7 0%, rgba(0, 0, 0, 0) 20%);
+
+  }
+
+  @include mixin.screen-max-width-576{
+    background: variables.$black3;
+    border: 1px solid variables.$gray;
+    border-radius: 16px;
+    position: relative;
+  }
+}
+.directions-null-section{
+  padding-bottom: 120px;
+  @include mixin.screen-max-width-767{
+    display: none;
+  }
+}
+
+.we-waiting-text {
+  margin-top: 8px;
+}
+

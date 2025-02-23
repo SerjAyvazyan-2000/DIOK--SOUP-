@@ -1,0 +1,39 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.order-sub-title{
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  color: variables.$gray10;
+
+}
+
+.order-tools{
+  margin-top: 48px;
+}
+.order-inputs{
+  margin-top: 24px;
+  gap: 20px;
+
+  @include mixin.screen-max-width-767{
+    flex-direction: column;
+  }
+
+}
+.order-textarea{
+  margin-top: 24px;
+
+  @include mixin.screen-max-width-576{
+    textarea{
+      height: 80px;
+    }
+  }
+}
+.order-agree{
+  margin-top: 32px;
+
+}
+.order-bnt{
+  margin-top: 32px;
+}

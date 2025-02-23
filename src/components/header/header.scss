@@ -2,7 +2,7 @@
 @use "../../assets/scss/mixin";
 
 .header {
-  padding: 64px 0 0;
+  padding: 24px 0 0;
   position: fixed;
   width: 100%;
   left: 0;
@@ -14,19 +14,39 @@
     padding: 20px 0 0;
 
   }
+
+  &.home {
+    padding: 64px 0 0;
+
+    @include mixin.screen-max-width-991 {
+      padding: 20px 0 0;
+
+    }
+
+
+    &.moved{
+      padding: 24px 0 0;
+
+    }
+  }
 }
 
 .header.moved {
-  padding: 20px 0 0;
 
   .header-body {
     padding: 14px 34px;
+
+
 
     @include mixin.screen-max-width-576{
       padding: 7px 12px;
 
     }
 
+  }
+
+  .menu-list{
+    margin-top: 0;
   }
 }
 
@@ -69,10 +89,13 @@
 
 .menu-list {
   gap: 24px;
+  transition: .3s;
 
   @include mixin.screen-max-width-991 {
     flex-direction: column;
     align-items: stretch;
+    margin-top: 50px;
+
   }
 }
 
@@ -98,6 +121,7 @@
     top: 0;
     padding: 134px 55px 0 55px;
     overflow: auto;
+    z-index: -1;
 
     &.active {
       right: 0;

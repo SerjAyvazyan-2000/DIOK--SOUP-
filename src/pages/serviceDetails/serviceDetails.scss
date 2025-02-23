@@ -3,7 +3,7 @@
 
 
 .services-details-breadcrumbs {
-  margin-top: 152px;
+  margin-top: 136px;
   @include mixin.screen-max-width-576 {
     margin-top: 92px;
   }
@@ -13,7 +13,7 @@
   margin-top: 61px;
   padding-bottom: 120px;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     margin-top: 30px;
 
   }
@@ -28,7 +28,7 @@
   max-width: 280px;
   width: 100%;
 
-  @include mixin.screen-max-width-1200{
+  @include mixin.screen-max-width-1200 {
     display: none;
   }
 }
@@ -41,7 +41,26 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 30px;
-    color: variables.$white3;
+    color: variables.$gray2;
+    transition: .3s;
+
+  }
+.services-arrow-down{
+  transition: .3s;
+}
+  &.active {
+    .services-arrow-down{
+      transform: rotate(180deg);
+    }
+    h3{
+      color: variables.$white3;
+    }
+  }
+
+  &:hover {
+    h3{
+      color: variables.$white3;
+    }
 
   }
 }
@@ -70,10 +89,27 @@
 }
 
 .services-details-items {
-  margin-top: 24px;
+  margin-top: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  max-height: 0;
+
 
   & > :not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 0;
+  }
+
+  &.active {
+    margin-top: 24px;
+    opacity: 1;
+    visibility: visible;
+    max-height: 3000px;
+
+
+    & > :not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -117,6 +153,19 @@
     }
   }
 
+  &:hover {
+    .service-active-decor {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    h4 {
+
+      color: variables.$white3;
+
+    }
+  }
+
 }
 
 .service-active-decor {
@@ -133,18 +182,20 @@
   max-width: 1040px;
   width: 100%;
 
-  @include mixin.screen-max-width-1200{
+  @include mixin.screen-max-width-1200 {
     max-width: 100%;
   }
 }
-.details-share-share{
 
-  span{
-    @include mixin.screen-max-width-767{
+.details-share-share {
+
+  span {
+    @include mixin.screen-max-width-767 {
       display: none;
     }
   }
 }
+
 .details-media {
   width: 100%;
   position: relative;
@@ -155,7 +206,7 @@
   padding: 24px 32px;
   justify-content: space-between;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     padding: 20px;
 
   }
@@ -185,8 +236,11 @@
   font-size: 48px;
   line-height: 57.6px;
   color: variables.$white3;
+  max-width: 500px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     font-size: 24px;
     line-height: 28.8px;
 
@@ -213,7 +267,7 @@
   line-height: 30px;
   color: variables.$gray2;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -222,53 +276,7 @@
 
 }
 
-.product-services {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
 
-.product-service {
-  flex: 1 1 24%;
-  min-height: 183px;
-  border: 1px solid variables.$gray;
-  padding: 16px 16px 18px 16px;
-  border-radius: 16px;
-  gap: 10px;
-  justify-content: space-between;
-
-  @include mixin.screen-max-width-767{
-    flex: 1 1 32%;
-
-  }
-  @include mixin.screen-max-width-576{
-    flex: 1 1 50%;
-    min-height: 140px;
-
-
-  }
-}
-
-.product-service-name {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 20.8px;
-  color: variables.$white3;
-
-}
-
-.service-order {
-  gap: 13px;
-
-  p {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-    text-align: center;
-    color: variables.$white6;
-
-  }
-}
 
 .about-us-numbers {
   margin-top: 100px;
@@ -304,7 +312,7 @@
   flex: 1 1 30%;
   z-index: 2;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     min-height: 182px;
     flex: 1 1 50%;
 
@@ -366,7 +374,7 @@
   border: 1px solid variables.$gray;
   border-radius: 16px;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     padding: 20px;
   }
 
@@ -409,24 +417,26 @@
   margin-top: 100px;
 }
 
-.cases-btn{
+.cases-btn {
   display: none;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     display: flex;
 
-    button{
+    button {
       padding: 8px 21px;
     }
   }
 }
-.cases-block-header{
-  @include mixin.screen-max-width-576{
+
+.cases-block-header {
+  @include mixin.screen-max-width-576 {
     justify-content: space-between;
     gap: 10px;
   }
 
 }
+
 .cases-items {
   width: 100%;
   display: flex;
@@ -445,13 +455,13 @@
   gap: 10px;
   z-index: 2;
 
-  @include mixin.screen-max-width-1200{
+  @include mixin.screen-max-width-1200 {
     flex-direction: column;
     gap: 24px;
 
   }
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     padding: 16px;
 
   }
@@ -503,7 +513,7 @@
     line-height: 30px;
     color: variables.$white7;
 
-    @include mixin.screen-max-width-576{
+    @include mixin.screen-max-width-576 {
       font-size: 18px;
       line-height: 21.6px;
 
@@ -530,7 +540,7 @@
     font-size: 20px;
     line-height: 30px;
     color: variables.$primary;
-    @include mixin.screen-max-width-576{
+    @include mixin.screen-max-width-576 {
       font-size: 18px;
       line-height: 21.6px;
 
@@ -543,7 +553,7 @@
     line-height: 30px;
     color: variables.$gray2;
 
-    @include mixin.screen-max-width-576{
+    @include mixin.screen-max-width-576 {
       font-size: 18px;
       line-height: 21.6px;
 
@@ -555,7 +565,7 @@
   margin-top: 100px;
 }
 
-.advantages-item{
+.advantages-item {
   border: 1px solid variables.$gray;
   padding: 32px 24px;
   border-radius: 16px;
@@ -564,7 +574,7 @@
   flex: 1 1 31.7%;
   z-index: 2;
 
-  @include mixin.screen-max-width-767{
+  @include mixin.screen-max-width-767 {
     flex: 1 1 50%;
   }
 }
@@ -576,29 +586,29 @@
 
 }
 
-.interesting-block{
+.interesting-block {
   margin-top: 100px;
 }
 
-.interesting-items{
+.interesting-items {
   margin-top: 32px;
   display: flex;
   flex-wrap: wrap;
   column-gap: 24px;
   row-gap: 32px;
 
-  .services-item{
-    @include mixin.screen-max-width-1300{
+  .services-item {
+    @include mixin.screen-max-width-1300 {
       flex: 1 1 32%;
     }
 
-    @include mixin.screen-max-width-767{
+    @include mixin.screen-max-width-767 {
       flex: 1 1 50%;
 
     }
   }
 
-  @include mixin.screen-max-width-767{
+  @include mixin.screen-max-width-767 {
     gap: 24px;
 
   }

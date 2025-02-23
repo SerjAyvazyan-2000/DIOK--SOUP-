@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo.svg'
 import Button from "../../ui/button/button.jsx";
 
 
-const Header = () => {
+const Header = ({isHomePage}) => {
 
     const [scrolled, setScrolled] = useState(false);
     const [isActive, setIsActive] = useState(false);
@@ -29,7 +29,9 @@ const Header = () => {
     };
 
 
-    return <header className={`header ${scrolled ? "moved" : ""}`}>
+
+    return <header className={`header ${isHomePage ? "home" : ""} ${scrolled ? "moved" : ""}`}>
+
         <div className='header-container'>
 
             <div className='header-body G-justify-between'>
@@ -39,16 +41,16 @@ const Header = () => {
                 <nav className={`menu ${isActive ? "active" : ""}`}>
                     <ul className='menu-list G-align-center'>
                         <li onClick={toggleBurger} className='menu-item'>
-                            <NavLink className='menu-link' to={'/services'} >Услуги</NavLink>
+                            <NavLink className='menu-link' to={'/services'}>Услуги</NavLink>
                         </li>
                         <li onClick={toggleBurger} className='menu-item'>
-                            <NavLink className='menu-link' to={'/products'} >Продукты</NavLink>
+                            <NavLink className='menu-link' to={'/products'}>Продукты</NavLink>
                         </li>
                         <li onClick={toggleBurger} className='menu-item'>
-                            <NavLink className='menu-link' to={'/'}>Вакансии</NavLink>
+                            <NavLink className='menu-link' to={'/vacancies'}>Вакансии</NavLink>
                         </li>
                         <li onClick={toggleBurger} className='menu-item'>
-                            <NavLink className='menu-link' to={'/'}>О компании</NavLink>
+                            <NavLink className='menu-link' to={'/company'}>О компании</NavLink>
                         </li>
                     </ul>
 

@@ -3,7 +3,7 @@
 
 
 .services-breadcrumbs {
-  margin-top: 152px;
+  margin-top: 136px;
   @include mixin.screen-max-width-576 {
     margin-top: 92px;
   }
@@ -21,7 +21,7 @@
 .services-top-section {
   margin-top: 70px;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     margin-top: 29px;
 
   }
@@ -62,11 +62,13 @@
   font-size: 48px;
   line-height: 72px;
   color: variables.$white3;
+  transition: .3s;
 
   @include mixin.screen-max-width-576 {
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
+    text-transform: uppercase;
 
 
   }
@@ -114,36 +116,34 @@
 }
 
 .services-list {
-  margin-top: 32px;
   display: flex;
   flex-wrap: wrap;
-  column-gap: 24px;
-  row-gap: 32px;
+  gap: 0;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 0;
+  transition: .3s;
 
-  @include mixin.screen-max-width-576 {
-    gap: 0;
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    margin-top: 0;
-    transition: .3s;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    max-height: 15000px;
+    gap: 24px;
+    margin-top: 32px;
+    column-gap: 24px;
+    row-gap: 32px;
 
-    &.active {
-      opacity: 1;
-      visibility: visible;
-      max-height: 15000px;
-      gap: 24px;
-      margin-top: 32px;
 
-    }
   }
 
 }
 
 
-
 .services-list-header {
   gap: 8px;
+  cursor: pointer;
+  max-width: max-content;
 
   i {
     transition: .3s;
@@ -153,6 +153,13 @@
 
     i {
       transform: rotate(180deg);
+    }
+  }
+
+  &:hover{
+    .services-list-title{
+      color: variables.$green;
+
     }
   }
 }
@@ -179,7 +186,7 @@
   }
 }
 
-.product-services{
+.product-services {
   margin-top: 32px;
   display: flex;
   flex-wrap: wrap;

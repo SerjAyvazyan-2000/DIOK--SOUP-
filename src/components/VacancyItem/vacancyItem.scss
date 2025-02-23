@@ -1,0 +1,201 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.vacancies-item {
+  flex: 1 1 49%;
+  border: 1px solid variables.$gray;
+  padding: 32px;
+  border-radius: 24px;
+
+  @include mixin.screen-max-width-991 {
+
+    &.active {
+      .vacancy-tools {
+        max-height: 1000px;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 24px;
+        gap: 10px;
+
+      }
+
+      .vacancy-infos {
+        max-height: 2000px;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 24px;
+
+
+        & > :not(:last-child) {
+          margin: 0 0 24px 0;
+        }
+      }
+    }
+
+
+  }
+
+
+  @include mixin.screen-max-width-767{
+    padding: 20px;
+
+  }
+}
+
+
+
+.vacancy-item-header {
+
+  &.active {
+    .vacancy-arrow-down {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.vacancy-item-titles {
+  justify-content: space-between;
+  gap: 10px;
+
+  @include mixin.screen-max-width-991{
+    align-items: flex-start;
+  }
+}
+
+.vacancy-item-icons {
+  gap: 44px;
+  align-items: center;
+
+  @include mixin.screen-max-width-991 {
+    .vacancy-arrow-down {
+      display: flex;
+    }
+  }
+
+}
+
+.vacancy-arrow-down {
+  display: none;
+}
+
+.vacancies-name {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 54px;
+  color: variables.$white3;
+  text-transform: uppercase;
+
+}
+
+.icon-share2 {
+  font-size: 24px;
+  background: variables.$white6;
+  cursor: pointer;
+  transition: .3s;
+
+  &:hover {
+    background: variables.$green;
+
+  }
+}
+
+.vacancy-experience {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 54px;
+  color: variables.$green2;
+  text-transform: uppercase;
+
+}
+
+.vacancy-tools {
+  margin-top: 24px;
+  justify-content: space-between;
+  gap: 10px;
+  transition: .3s;
+  flex-wrap: wrap;
+
+  @include mixin.screen-max-width-991 {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0;
+    gap: 0;
+  }
+
+  @include mixin.screen-max-width-576{
+    flex-direction: column-reverse;
+  }
+}
+
+.vacancies-price {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 48px;
+  color: variables.$green;
+
+}
+
+.vacancy-infos {
+  margin-top: 24px;
+  transition: .3s;
+
+  & > :not(:last-child) {
+    margin: 0 0 24px 0;
+  }
+
+  @include mixin.screen-max-width-991 {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0;
+
+
+    & > :not(:last-child) {
+      margin: 0 0 0 0;
+    }
+  }
+}
+
+.vacancy-info {
+  padding: 24px 16px;
+
+  @include mixin.screen-max-width-576{
+    padding: 8px;
+  }
+}
+
+.vacancy-info-title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28.8px;
+  color: variables.$white3;
+
+}
+
+.vacancy-info-list {
+  margin-top: 16px;
+
+  p {
+    font-weight: 400;
+    font-size: 18px;
+    color: variables.$white7;
+    line-height: 21.6px;
+    margin-left: 30px;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      left: -20px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      top: 8px;
+      background: variables.$white7;
+
+    }
+
+  }
+}

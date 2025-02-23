@@ -37,11 +37,10 @@
 }
 
 .footer-menu-link {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
-  line-height: 20px;
-  color: variables.$white;
+  line-height: 21px;
+  color: variables.$white3;
   transition: .3s;
 
   &:hover {
@@ -53,23 +52,24 @@
 }
 
 .outsourcing-title {
-  margin-bottom: 8px;
-  font-family: "Roboto", sans-serif;
+  margin-bottom: 16px;
+  color: variables.$white3;
   font-weight: 600;
   font-size: 14px;
-  line-height: 20px;
-  color: variables.$gray2;
+  line-height: 21px;
 
 }
 
 .outsourcing-item {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 19.6px;
-  color: variables.$gray3;
+  color: variables.$white7;
   transition: .3s;
-  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: Auto;
+
 
   &:hover {
     text-decoration: underline;
@@ -80,7 +80,7 @@
 }
 
 .outsourcing-list {
-  gap: 10px;
+  gap: 16px;
 
   @include mixin.screen-max-width-576{
     order: 2;
@@ -100,15 +100,14 @@
 }
 
 .footer-link {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-weight: 600;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 21px;
   text-decoration: underline;
   text-decoration-style: solid;
   text-decoration-thickness: Auto;
-  text-decoration-skip-ink: auto;
-  color: variables.$gray2;
+  color: variables.$white7;
+
   transition: .3s;
 
   &:hover {
@@ -116,10 +115,7 @@
 
   }
 
-  @include mixin.screen-max-width-576{
-    color: variables.$gray3;
 
-  }
 }
 
 .footer-clue {
@@ -133,10 +129,17 @@
     line-height: 20px;
     color: variables.$gray2;
 
+
+
+
     @include mixin.screen-max-width-576{
       color: variables.$gray3;
-
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19.2px;
     }
+
+
   }
   @include mixin.screen-max-width-576{
     order: 3;

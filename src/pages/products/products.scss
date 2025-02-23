@@ -3,7 +3,7 @@
 
 
 .products-breadcrumbs {
-  margin-top: 152px;
+  margin-top: 136px;
   @include mixin.screen-max-width-576 {
     margin-top: 92px;
   }
@@ -19,36 +19,7 @@
   }
 }
 
-.products-title {
-  font-family: 'Sen', sans-serif;
-  color: variables.$white3;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 57.6px;
-  letter-spacing: 2px;
 
-
-  @include mixin.screen-max-width-576 {
-    font-size: 32px;
-    line-height: 48px;
-
-  }
-
-}
-
-.products-sub-title {
-  margin-top: 20px;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: variables.$gray2;
-  @include mixin.screen-max-width-576 {
-    font-size: 18px;
-    line-height: 22px;
-    margin-top: 8px;
-
-  }
-}
 
 .products-info-header {
   justify-content: space-between;

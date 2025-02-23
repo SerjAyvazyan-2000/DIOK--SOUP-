@@ -7,7 +7,60 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2)
 
 }
+.modal-form-block{
 
+  .form-body{
+    padding: 16px 44px;
+
+  }
+  .container{
+    padding:0 ;
+
+  }
+
+  @include mixin.screen-max-width-1200{
+    .form-body{
+      padding: 0;
+
+    }
+  }
+
+  @include mixin.screen-max-width-767{
+    .form-title{
+      font-size: 24px;
+      line-height: 31.2px;
+
+      span{
+        display: inline;
+      }
+
+    }
+
+    .form-titles{
+      gap: 8px;
+    }
+    .form-clue{
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+
+    }
+
+    .form-inputs{
+      flex-direction: column;
+    }
+
+    .form-submit {
+
+      button{
+        width: max-content;
+        padding: 10.5px 20px;
+      }
+    }
+  }
+
+
+}
 .form-body {
   gap: 48px;
   padding: 64px 0;
@@ -85,12 +138,21 @@
     @include mixin.screen-max-width-576{
       display: inline;
     }
+    &:hover{
+
+      a {
+        color: variables.$green;
+      }
+    }
+
+    a {
+      color: variables.$primary;
+      transition: .3s;
+    }
 
   }
 
-  a {
-    color: variables.$primary;
-  }
+
 
   @include mixin.screen-max-width-576 {
     font-size: 20px;

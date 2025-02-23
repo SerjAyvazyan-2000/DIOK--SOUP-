@@ -16,42 +16,42 @@ const Footer = () => {
                     <nav className='footer-menu'>
                         <ul className='footer-menu-list G-flex-column'>
                             <li className='footer-menu-item'>
-                                <NavLink to={'/'} className='footer-menu-link'>Услуги</NavLink>
+                                <NavLink to={'/services'} className='footer-menu-link'>Услуги</NavLink>
                             </li>
                             <li className='footer-menu-item'>
-                                <NavLink to={'/'} className='footer-menu-link'>Продукты</NavLink>
+                                <NavLink to={'/products'} className='footer-menu-link'>Продукты</NavLink>
                             </li>
                             <li className='footer-menu-item'>
-                                <NavLink to={'/'} className='footer-menu-link'>Вакансии</NavLink>
+                                <NavLink to={'/vacancies'} className='footer-menu-link'>Вакансии</NavLink>
                             </li>
                             <li className='footer-menu-item'>
-                                <NavLink to={'/'} className='footer-menu-link'>О компании</NavLink>
+                                <NavLink to={'/company'} className='footer-menu-link'>О компании</NavLink>
                             </li>
                         </ul>
                     </nav>
 
                     <div className='outsourcing-list G-flex-column'>
                         <h3 className='outsourcing-title'>Аутсорсинг</h3>
-                        <NavLink to='/' className='outsourcing-item'>Разработка сайтов</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>чат-боты</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>Разработка мобильных приложений</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>доработка и развитие существующих решений</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>Разработка ИТ-систем</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>блокчейн и крипто</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>Искусственный интеллект</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>аналитические и bi решения</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>электронная коммерция</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>devops</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>Машинное обучение</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>тестирование</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>Компьютерное зрение</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>управление проектами</NavLink>
-                        <NavLink to='/' className='outsourcing-item'>асутп и низкоуровневые решения</NavLink>
-                        <NavLink to={'/'} className='outsourcing-item'>аналитика и проектирование </NavLink>
-                        <NavLink to={'/'} className='outsourcing-item'>аппаратные решения и робототехника</NavLink>
-                        <NavLink to={'/'} className='outsourcing-item'>составление документации</NavLink>
-                        <NavLink to={'/'} className='outsourcing-item'>rpa и автоматизация бизнес-процессов</NavLink>
-                        <NavLink to={'/'} className='outsourcing-item'>ui/ux дизайн </NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Разработка сайтов</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Чат-боты</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Разработка мобильных приложений</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Доработка и развитие существующих решений</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Разработка ИТ-систем</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Блокчейн и крипто</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Искусственный интеллект</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Аналитические и BI решения</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Электронная коммерция</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Devops</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Машинное обучение</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Тестирование</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Компьютерное зрение</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Управление проектами</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>Асутп и низкоуровневые решения</NavLink>
+                        <NavLink to={'/services'} className='outsourcing-item'>Аналитика и проектирование </NavLink>
+                        <NavLink to={'/services'} className='outsourcing-item'>Аппаратные решения и робототехника</NavLink>
+                        <NavLink to={'/services'} className='outsourcing-item'>Составление документации</NavLink>
+                        <NavLink to={'/services'} className='outsourcing-item'>RPA и автоматизация бизнес-процессов</NavLink>
+                        <NavLink to={'/services'} className='outsourcing-item'>UX/UI дизайн</NavLink>
 
                     </div>
 

@@ -1,0 +1,94 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+.replay-tools {
+  margin-top: 48px;
+}
+
+.replay-inputs {
+  margin-top: 24px;
+  gap: 24px;
+
+  @include mixin.screen-max-width-767{
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+}
+
+.resume-block {
+  margin-top: 24px;
+
+}
+
+.resume-title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: variables.$white7;
+
+}
+
+.resume-header {
+  gap: 4px;
+}
+
+.resume-cnt {
+  min-height: 168px;
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 2;
+
+
+}
+.resume-border{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+
+  img{
+    min-height: 168px;
+
+  }
+}
+.resume-label {
+  p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19.6px;
+    color: variables.$white7;
+    text-align: center;
+
+    span{
+      color: variables.$aqua;
+      cursor: pointer;
+    }
+
+
+  }
+  span{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16.8px;
+    color: variables.$gray3;
+    margin-top: 8px;
+
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.resume-agree{
+  margin-top: 32px;
+}
+
+.resume-btn{
+  margin-top: 32px;
+
+}

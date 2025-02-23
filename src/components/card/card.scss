@@ -14,6 +14,11 @@
   overflow: hidden;
   transition: all 0.3s ease-in-out;
 
+  @include mixin.screen-max-width-1200{
+    flex: 1 1 40%;
+
+  }
+
   @include mixin.screen-max-width-767 {
     flex: 1 1 100%;
 

@@ -8,8 +8,8 @@ const Breadcrumbs = ({next, nextUrl, prevUrl}) => {
 
 
     useEffect(() => {
-        console.log(productsUrl)
     }, [nextUrl]);
+
 
     return <ul className='breadcrumbs-items G-align-center'>
         <li className={`breadcrumbs-item ${productsUrl ? 'link-none' : ''}`}>
@@ -37,7 +37,7 @@ const Breadcrumbs = ({next, nextUrl, prevUrl}) => {
             <NavLink className='breadcrumbs-link' to={`${nextUrl}`}>{next}</NavLink>
         </li>
 
-        <li className={` ${productsUrl ? 'arrow-visible' : ''}`}>
+        <li className={` ${productsUrl ? 'arrow-visible' : 'arrow-none'}`}>
             <i className='icon icon-arrow-left2'></i>
         </li>
 

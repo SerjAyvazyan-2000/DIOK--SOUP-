@@ -1,13 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import './cookie.scss'
 import Button from "../../ui/button/button.jsx";
 const Cookie = () => {
-
     const [hidden, setHidden] = useState(false);
+
+    useEffect(() => {
+        const cookieAccepted = localStorage.getItem('cookieAccepted');
+        if (cookieAccepted) {
+            setHidden(true);
+        }
+    }, []);
+
+
 
     const handleClick = () => {
          setHidden(!hidden);
+        localStorage.setItem('cookieAccepted', 'true');
+
     }
 
     return <div className={`cookie-box G-justify-between ${hidden ? 'hidden': ''}`}>
