@@ -36,7 +36,7 @@ const Company = () => {
         { name: "Swift", className: "orange-language" },
         { name: "Kotlin", className: "orange-language" },
         { name: "Dart", className: "primary-language" },
-        { name: "JavaScript", className: "gray-language" },
+        { name: "JavaScript", className: "gray-language",size:'big-gray' },
         { name: "Flutter", className: "primary-language" },
         { name: "SwiftUI", className: "gray-language" },
         { name: "React Native", className: "gray-language",size:'big-primary' },
