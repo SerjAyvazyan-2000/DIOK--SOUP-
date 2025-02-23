@@ -4,18 +4,11 @@ import heroDecorMobile from '../../assets/images/heroDecorMobile.webp'
 import workingItemImg from '../../assets/images/workingItemImg.webp'
 import workingItemImg2 from '../../assets/images/workingItemImg2.webp'
 import workingItemImg2Mobile from '../../assets/images/workingItemImg2Mobile.webp'
-
-
 import workingItemImg3 from '../../assets/images/workingItemImg3.webp'
 import workingItemImg3Mobile from '../../assets/images/workingItemImg3Mobile.webp'
-
-
 import workingItemImg4 from '../../assets/images/workingItemImg4.webp'
 import workingItemImg4Mobile from '../../assets/images/workingItemImg4Mobile.webp'
-
-
 import Form from "../../components/form/form.jsx";
-import {useEffect} from "react";
 import CustomLink from "../../ui/customLink/link.jsx";
 
 const Company = () => {
@@ -29,10 +22,8 @@ const Company = () => {
         { name: "Vue.js", className: "primary-language" },
         { name: "JSON", className: "gray-language" },
         { name: "Solana", className: "red-language" },
-        { name: "SQL", className: "orange-language" },
         { name: "Ruby", className: "rose-language" },
         { name: "Django", className: "primary-language" },
-        { name: "Java", className: "gray-language" },
         { name: "Swift", className: "orange-language" },
         { name: "Kotlin", className: "orange-language" },
         { name: "Dart", className: "primary-language" },
@@ -58,7 +49,6 @@ const Company = () => {
         { name: "Adobe XD", className: "primary-language" ,size:'big-primary'},
         { name: "Figma", className: "rose-language" },
         { name: "Apache Spark", className: "primary-language",size:'big-primary' },
-        { name: "JSON", className: "gray-language" },
         { name: "TypeScript", className: "orange-language" },
         { name: "MySQL", className: "primary-language" },
         { name: "SQL", className: "orange-language" },
@@ -66,6 +56,7 @@ const Company = () => {
         { name: "Data Analysis", className: "rose-language" ,size:'big-primary'},
         { name: "C++ ", className: "gray-language" },
         { name: "OpenCV", className: "orange-language" },
+        { name: "Bash", className: "gray-language" },
         { name: "React", className: "gray-language" },
         { name: "Unity 3D", className: "rose-language",size:'big-primary' },
         { name: "Kanban", className: "primary-language" },
