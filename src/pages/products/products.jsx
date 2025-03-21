@@ -1,13 +1,16 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.jsx";
 import './products.scss'
 import Form from "../../components/form/form.jsx";
-import logo from '../../assets/images/logo2.svg'
 import productsImg from '../../assets/images/productsPicture.webp'
 import {Link} from "react-router-dom";
 import CustomLink from "../../ui/customLink/link.jsx";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
+import React, {useEffect} from "react";
+import {ToastContainer} from "react-toastify";
+
 const Products = () => {
 
-
+    const {data: products, isLoading: isLoadingProducts} = useFetchData("/products", "logo");
 
 
     return <>
@@ -37,36 +40,49 @@ const Products = () => {
 
         <section className='products-info-section'>
             <div className='big-container'>
-                <div className='products-info'>
-                    <div className='products-info-header G-align-center'>
-                        <div className='products-logo G-flex'>
-                            <img src={logo} alt="logo"/>
-                        </div>
-                        <CustomLink
-                            variant={'link-primary-icon'}
-                            text={'Перейти на сайт'}
-                            icon={'goTo-icon'}
-                            blank={true}
-                            url={'https://dioc-knowledge.vercel.app/'}
-                        />
-                    </div>
+                <div className='products-infos'>
 
-                    <div className='products-info-items G-flex'>
-                        <div className='products-info-item'>
-                            <h3>АРЕНДУЙТЕ <span className='mobile-text-wrap'>СПЕЦИАЛИСТОВ</span>
-                                ПО МОДЕЛИ АУТСТАФИНГА</h3>
-                            <p>Получите доступ к лучшим ИТ-
-                                <span className='mobile-text-wrap'>специалистам</span>
-                                с помощью нашей модели <span className='mobile-text-wrap'>аутстаффинга.</span>
-                                Арендуйте специалистов, <span className='mobile-text-wrap'>необходимых для развития</span> ваших проектов</p>
-                        </div>
-                        <div className='products-info-media G-flex'>
-                            <img src={productsImg} alt=""/>
-                        </div>
 
-                    </div>
+                    {isLoadingProducts ? (
+                        <div className='loading'>Загрузка...</div>
+                    ) : products.length === 0 ? (
+                        <div className='null-products'>Нет Products.</div>
+                    ) : (
+                        products?.map((product, index) => (
+                            <div key={index} className='products-info'>
+                                <div className='products-info-header G-align-center'>
+                                    <div className='products-logo G-flex'>
+                                        <img
+                                            src={product.logo ? `${'http://31.129.56.213:1337'}${product.logo.url}` : "/fallback-logo.svg"}
+                                            alt="logo"/>
+
+                                    </div>
+                                    <CustomLink
+                                        variant={'link-primary-icon'}
+                                        text={'Перейти на сайт'}
+                                        icon={'goTo-icon'}
+                                        blank={true}
+                                        url={product?.url}
+                                    />
+                                </div>
+
+                                <div className='products-info-items G-flex'>
+                                    <div className='products-info-item'>
+                                        <h3>{product?.title}</h3>
+                                        <p>{product?.description}</p>
+                                    </div>
+                                    <div className='products-info-media G-flex'>
+                                        <img src={productsImg} alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        ))
+                    )}
 
                 </div>
+
+
                 <div className='steps-block '>
                     <div className='steps-items G-flex'>
                         <div className='step-item'>
@@ -99,6 +115,7 @@ const Products = () => {
 
         <Form titleClass='services-form-title'/>
 
+        <ToastContainer/>
 
     </>
 };

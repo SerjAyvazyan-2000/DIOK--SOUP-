@@ -1,6 +1,5 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.jsx";
 import './serviceDetails.scss'
-import {Link, useLocation} from "react-router-dom";
 import detailsItemActive from "../../assets/images/detailsItemActive.webp";
 import detailsImg from "../../assets/images/detailsImg.webp";
 import detailsImgMobile from "../../assets/images/detailsImgMobile.png";
@@ -12,85 +11,74 @@ import ministry from "../../assets/images/ministry.svg";
 import clientsDecor from "../../assets/images/clientsDecor.png";
 import casesItemDecor from "../../assets/images/casesItemDecor.png";
 import advantagesItemDecor from "../../assets/images/advantagesItemDecor.png";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Card from "../../components/card/card.jsx";
 import Form from "../../components/form/form.jsx";
 import Button from "../../ui/button/button.jsx";
 import ServiceProducts from "../../components/serviceProducts/serviceProducts.jsx";
 import Modal from "../../ui/modal/modal.jsx";
 import Order from "../../components/order/order.jsx";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
+import {useParams} from "react-router-dom";
+import api from "../../api.js";
+import {ToastContainer} from "react-toastify";
 
 const ServiceDetails = () => {
-    const [isActive, setIsActive] = useState(true);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const {id} = useParams();
+    const [activeId, setActiveId] = useState(null);
+    const [activeCategory, setActiveCategory] = useState(null);
     const [order, setOrder] = useState(false);
-    const [title, setTitle] = useState('');
-    const [name, setName] = useState('');
+    const [selectedService, setSelectedService] = useState(null);
+    const [selectedSubService, setSelectedSubService] = useState(null);
+    const {data: servicesCategories, isLoading: isLoadingCategories} = useFetchData("/service-categories");
+    const {data: services, isLoading: isLoadingServices} = useFetchData("/services", "serviceCategory");
+    const {data: subServices, isLoading: isLoadingSubServices} = useFetchData("/subservices", "services");
+    const {data: facts, isLoading: isLoadingFacts} = useFetchData("/facts");
 
 
-
-    const handleItemClick = (index,name) => {
-        if (activeIndex !== index) {
-            setActiveIndex(index);
-            setName(name);
+    const handleItemClick = (id, filteredService) => {
+        if (activeId !== id) {
+            setActiveId(id);
         }
+
+        setSelectedService(filteredService)
+
     };
 
-    const handleOpenServices = () => {
-        setIsActive(!isActive)
-    };
+
+    useEffect(() => {
+        if (servicesCategories.length > 0) {
+            setActiveCategory(servicesCategories[0].id);
+        }
+    }, [servicesCategories]);
+
+
+    useEffect(() => {
+        setActiveId(selectedService?.id);
+    }, [selectedService]);
+
+
+    useEffect(() => {
+        const fetchService = async () => {
+            try {
+                const response = await api.get(`/services/${id}`);
+                if (response.status === 200) {
+                    setSelectedService(response.data.data);
+                }
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+            }
+        };
+
+        fetchService();
+
+    }, [id]);
 
 
 
-    const services = [
-        {title: "Разработка сайтов", link: "/servicesDetails"},
-        {title: "Разработка мобильных приложений", link: "/servicesDetails"},
-        {title: "Разработка ИТ-систем", link: "/servicesDetails"},
-        {title: "Искусственный интеллект", link: "/servicesDetails"},
-        {title: "Аналитические и BI решения", link: "/servicesDetails"},
-        {title: "Машинное обучение", link: "/servicesDetails"},
-        {title: "Компьютерное зрение", link: "/servicesDetails"},
-        {title: "асутп и низкоуровневые решения", link: "/servicesDetails"},
-        {title: "аппаратные решения и робототехника", link: "/servicesDetails"},
-        {title: "rpa и автоматизация бизнес-процессов", link: "/servicesDetails"},
-        {title: "чат-боты", link: "/servicesDetails"},
-        {title: "доработка и развитие существующих решений", link: "/servicesDetails"},
-        {title: "блокчейн и крипто", link: "/servicesDetails"},
-        {title: "электронная коммерция", link: "/servicesDetails"},
-        {title: "devops", link: "/servicesDetails"},
-        {title: "тестирование", link: "/servicesDetails"},
-        {title: "управление проектами", link: "/servicesDetails"},
-        {title: "аналитика и проектирование ", link: "/servicesDetails"},
-        {title: "составление документации", link: "/servicesDetails"},
-        {title: "ui/ux дизайн", link: "/"},
-        {title: "Big Data и анализ данных", link: "/servicesDetails"},
-        {title: "Аналитика", link: "/"},
-        {title: "Backend-разработка", link: "/servicesDetails"},
-        {title: "Frontend-разработка", link: "/servicesDetails"},
-
-    ];
-
-    const interesting = [
-        {title: "Разработка сайтов", link: "/servicesDetails"},
-        {title: "Разработка мобильных приложений", link: "/servicesDetails"},
-        {title: "Разработка ИТ-систем", link: "/servicesDetails"},
-        {title: "Искусственный интеллект", link: "/servicesDetails"},
-        {title: "аналитические и bi решения", link: "/servicesDetails"},
-        {title: "Машинное обучение", link: "/servicesDetails"},
 
 
-    ];
 
-    const products = [
-        {id: 1, name: 'Лендинг', link: '/'},
-        {id: 2, name: 'Корпоративный сайт', link: '/'},
-        {id: 3, name: 'Интернет магазин', link: '/'},
-        {id: 4, name: 'Маркетплейс', link: '/'},
-        {id: 5, name: 'Выделенные рабочие места', link: '/'},
-        {id: 6, name: 'Корпоративные и клиентские порталы', link: '/'},
-        {id: 7, name: 'Интранет решения', link: '/'},
-        {id: 8, name: 'Стартап', link: '/'}
-    ];
 
     useEffect(() => {
         if (order) {
@@ -101,11 +89,19 @@ const ServiceDetails = () => {
     }, [order]);
 
     const handleOrder = (name) => {
-
         setOrder(!order);
-        setTitle(name || '');
+        setSelectedSubService(name)
 
     }
+
+
+    const getCategoryServiceCount = (categoryName) => {
+        return services.filter(service => service?.serviceCategory.name === categoryName).length;
+    };
+
+    const toggleServicesList = (categoryId) => {
+        setActiveCategory(activeCategory === categoryId ? null : categoryId);
+    };
 
 
     return <>
@@ -115,7 +111,7 @@ const ServiceDetails = () => {
                     <Breadcrumbs
                         prevUrl='Услуги '
                         nextUrl={'/servicesDetails'}
-                        next={'Разработка сайтов '}
+                        next={`${selectedService?.title}`}
                     />
                     <div className='details-share-share share G-align-center'>
                         <span>Поделиться</span>
@@ -130,29 +126,50 @@ const ServiceDetails = () => {
         <section className='service-details-info'>
             <div className='big-container'>
                 <div className='service-details-body G-flex'>
+
+
                     <div className='services-details-list'>
-                        <div onClick={handleOpenServices}
-                             className={`details-list-titles ${isActive ? 'active' : ''}  G-align-center`}>
-                            <h3>Аутсорсинг</h3>
-                            <div className='details-list-count G-center'>
-                                <span>20</span>
-                            </div>
-                            <i className='icon services-arrow-down '></i>
 
-                        </div>
-                        <div className={`services-details-items  ${isActive ? "active" : ""}`}>
-                            {services.map((service, index) => (
-                                <div
-                                    key={index}
-                                    className={`services-details-item ${activeIndex === index ? "active" : ""}`}
-                                    onClick={() => handleItemClick(index,service.title)}>
+                        <div className='details-list-categories'>
 
-                                    <h4>{service.title}</h4>
-                                    <div className='service-active-decor'>
-                                        <img src={detailsItemActive} alt=""/>
+                            {isLoadingCategories ? (
+                                <div className='loading'>Загрузка...</div>
+                            ) : servicesCategories.length === 0 ? (
+                                <div className='null-products'>Нет категории.</div>
+                            ) : (
+                                servicesCategories.map((category) => (
+                                    <div key={category.id} className='details-categorie-item'>
+                                        <div onClick={() => toggleServicesList(category.id)}
+                                             className={`details-list-titles  G-align-center ${activeCategory === category.id ? "active" : ""}`}>
+                                            <h3>{category?.name}</h3>
+                                            <div className='details-list-count G-center'>
+                                                <span>{getCategoryServiceCount(category?.name)}</span>
+                                            </div>
+                                            <i className='icon services-arrow-down '></i>
+                                        </div>
+
+                                        <div
+                                            className={`services-details-items ${activeCategory === category.id ? "active" : ""}`}>
+                                            {services
+                                                .filter(service => service?.serviceCategory?.name === category.name)
+                                                .map((filteredService, index) => (
+
+                                                    <div key={index}
+                                                         className={`services-details-item ${activeId === filteredService.id ? "active" : ""}`}
+                                                         onClick={() => handleItemClick(filteredService.id, filteredService)}>
+
+                                                        <h4>{filteredService?.title}</h4>
+                                                        <div className='service-active-decor'>
+                                                            <img src={detailsItemActive} alt=""/>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                        </div>
+
                                     </div>
-                                </div>
-                            ))}
+
+                                ))
+                            )}
 
                         </div>
 
@@ -160,74 +177,64 @@ const ServiceDetails = () => {
 
                     <div className='service-details-description'>
 
-                        <div className='details-media G-flex-column'>
-                            <h3 className='details-name'> {name || 'Разработка сайтов' }</h3>
-                            <div className='details-price G-align-center'>
-                                <p>От</p>
-                                <p>600 000,00 ₽</p>
+                        {selectedService && (
+                            <div className='details-media G-flex-column'>
+                                <h3 className='details-name'> {selectedService?.title}</h3>
+                                <div className='details-price G-align-center'>
+                                    <p>От</p>
+                                    <p>{new Intl.NumberFormat('en-US').format(selectedService?.cost)} ₽</p>
+
+
+                                </div>
+
+                                <div className='details-img G-flex'>
+                                    <img className='img-desktop' src={detailsImg} alt="image"/>
+                                    <img className='img-mobile' src={detailsImgMobile} alt="image"/>
+                                </div>
                             </div>
-
-                            <div className='details-img G-flex'>
-                                <img className='img-desktop' src={detailsImg} alt="image"/>
-                                <img className='img-mobile' src={detailsImgMobile} alt="image"/>
-
-
-                            </div>
-                        </div>
+                        )}
 
                         <div className='service-details-text'>
+
                             <p>
-                                Многие наши клиенты сталкиваются с тем, что вместо развития и роста ИТ-департамент
-                                тормозит работу. В итоге становится невозможно решать задачи со скоростью, требуемой для
-                                бизнеса. А это значит — регулярные финансовые потери и недополученная прибыль.
-                                Эту проблему эффективно и быстро решает аудит вашего ИТ-отдела.
+                                {selectedService?.description?.[0]?.children?.[0]?.text !== "null"
+                                    ? selectedService?.description?.[0]?.children?.[0]?.text
+                                    : "Описание отсутствует"}
                             </p>
+
                         </div>
 
-                        {products && products.length > 0 && (
-                            <ServiceProducts onclick={handleOrder} products={products}/>
+
+
+                        {subServices?.length > 0 && <ServiceProducts onclick={handleOrder}
+                                                                     subServices={subServices}
+                                                                     selectedService={selectedService}
+                        />}
+
+
+
+
+
+                        {!isLoadingFacts && facts?.length > 0 && (
+                            <div className='about-us-numbers'>
+                                <h4 className='details-about-title'>// О НАС В ЦИФРАХ</h4>
+
+                                <div className='numbers-items G-flex'>
+                                    {facts.map((fact, index) => (
+                                        <div key={index} className='numbers-item'>
+                                            <i className='icon numbers-icon'></i>
+                                            <h5 className='numbers-item-title'>{fact.title}</h5>
+                                            <p className='numbers-item-text'>{fact.description}</p>
+                                            <div className='numbers-item-decor G-flex'>
+                                                <img src={numbersItemDecor} alt=""/>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         )}
 
 
-                        <div className='about-us-numbers'>
-                            <h4 className='details-about-title'>// О НАС В ЦИФРАХ</h4>
-
-                            <div className='numbers-items G-flex'>
-                                <div className='numbers-item'>
-                                    <i className='icon numbers-icon'></i>
-                                    <h5 className='numbers-item-title'>7 лет опыта</h5>
-                                    <p className='numbers-item-text'>
-                                        КОММЕРЧЕСКОЙ РАЗРАБОТКИ ПРОЕКТОВ ЛЮБОГО УРОВНЯ СЛОЖНОСТИ
-                                    </p>
-                                    <div className='numbers-item-decor G-flex'>
-                                        <img src={numbersItemDecor} alt=""/>
-                                    </div>
-                                </div>
-
-                                <div className='numbers-item'>
-                                    <i className='icon numbers-icon'></i>
-                                    <h5 className='numbers-item-title'>Собственный r&d</h5>
-                                    <p className='numbers-item-text'>
-                                        более 50 Best of practice-решений в ИТ
-                                    </p>
-                                    <div className='numbers-item-decor G-flex'>
-                                        <img src={numbersItemDecor} alt=""/>
-                                    </div>
-                                </div>
-
-                                <div className='numbers-item'>
-                                    <i className='icon numbers-icon'></i>
-                                    <h5 className='numbers-item-title'>45 разработчиков </h5>
-                                    <p className='numbers-item-text'>
-                                        ВЫСОКОКВАЛИФИЦИРОВАННЫХ СПЕЦИАЛИСТОВ С ОПЫТОМ КОММЕРЧЕСКОЙ РАЗРАБОТКИ 5+ ЛЕТ
-                                    </p>
-                                    <div className='numbers-item-decor G-flex'>
-                                        <img src={numbersItemDecor} alt=""/>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
 
 
                         <div className='our-clients-block'>
@@ -249,7 +256,8 @@ const ServiceDetails = () => {
                                     </div>
                                 </div>
 
-                                <p className='our-client-clue'>ДИОК сотрудничает более чем с 70 брендами 10 клиентов из
+                                <p className='our-client-clue'>ДИОК сотрудничает более чем с 70 брендами 10
+                                    клиентов из
                                     РБК500</p>
 
                                 <div className='clients-decor'>
@@ -285,9 +293,11 @@ const ServiceDetails = () => {
                                                 <span className='cases-info-title'>функционал:</span>
                                                 — ИИ система монтажа и подготовки <b
                                                 className='desktop-text-wrap'>материалов</b>
-                                                <b className='mobile-text-wrap'> — Пользовательский интерфейс с ролевой
+                                                <b className='mobile-text-wrap'> — Пользовательский интерфейс с
+                                                    ролевой
                                                     персонализацие й</b>
-                                                <b className='text-wrap'>— Создание сценариев монтажа материалов</b>
+                                                <b className='text-wrap'>— Создание сценариев монтажа
+                                                    материалов</b>
                                                 — Система распознавания лиц (Цели -
                                                 афроамериканцы, азиаты, арабы до 16 лет)
 
@@ -326,7 +336,8 @@ const ServiceDetails = () => {
                                             <span>ROI 1000%</span>
                                             <p>
                                                 Решение экономит 4 млн рублей в
-                                                <b className='desktop-text-wrap'> месяц на этапе пилотирования</b>
+                                                <b className='desktop-text-wrap'> месяц на этапе
+                                                    пилотирования</b>
 
                                             </p>
                                         </div>
@@ -547,18 +558,26 @@ const ServiceDetails = () => {
                         </div>
 
 
-                        <div className='interesting-block'>
-                            <h4 className='details-about-title'>// ВАМ МОЖЕТ БЫТЬ ИНТЕРЕСНО</h4>
+                        {isLoadingServices ? (
+                            <div className='loading'>Загрузка...</div>
+                        ) : services.length === 0 ? (
+                            ''
+                        ) : (
+                            <div className='interesting-block'>
+                                <h4 className='details-about-title'>// ВАМ МОЖЕТ БЫТЬ ИНТЕРЕСНО</h4>
 
-                            <div className='interesting-items'>
-                                {interesting.map((service, index) => (
-                                    <Card key={index} item={service} index={index}/>
-                                ))}
+                                <div className='interesting-items'>
+                                    {services.slice(0, 6).map((service, index) => (
+                                        <Card key={index} item={service} index={index}/>
+                                    ))}
+                                </div>
                             </div>
 
-                        </div>
+                        )}
+
 
                     </div>
+
                 </div>
             </div>
         </section>
@@ -567,10 +586,12 @@ const ServiceDetails = () => {
 
 
         <Modal close={() => handleOrder()} active={order}>
-            <Order title={title} close={() => handleOrder()}/>
+            <Order title={selectedSubService} close={() => handleOrder()}/>
         </Modal>
+        <ToastContainer/>
 
     </>
 };
 
 export default ServiceDetails;
+

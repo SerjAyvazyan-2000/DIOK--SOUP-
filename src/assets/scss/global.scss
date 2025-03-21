@@ -19,7 +19,18 @@
   margin: 0 auto;
   padding: 0 20px;
 }
-
+.loading{
+  font-weight: 400;
+  color: variables.$primary;
+  font-size: 30px;
+  line-height: normal;
+}
+.null-products{
+  font-weight: 400;
+  color: variables.$gray;
+  font-size: 30px;
+  line-height: normal;
+}
 .text-wrap {
   display: block;
 }
@@ -364,13 +375,19 @@
 
 
 }
-
+.error-text{
+  color: variables.$red;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
 .modal-title{
   font-weight: 600;
   font-size: 36px;
   line-height: 46.8px;
   color: variables.$white3;
   text-transform: uppercase;
+  max-width: 586px;
   @include mixin.screen-max-width-576{
     font-size: 24px;
     line-height: 31.2px;

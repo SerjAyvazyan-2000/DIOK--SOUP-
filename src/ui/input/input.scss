@@ -27,6 +27,14 @@
 
 
   }
+
+  &.error{
+
+    input{
+      border: 1px solid variables.$red;
+
+    }
+  }
 }
 
 .input-name {

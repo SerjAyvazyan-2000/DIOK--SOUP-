@@ -8,24 +8,15 @@ import waitingItemImg2Mobile from '../../assets/images/waitingItemImg2Mobile.web
 import waitingItemImg3 from '../../assets/images/waitingItemImg3.webp'
 import waitingItemImg3Mobile from '../../assets/images/waitingItemImg3Mobile.webp'
 
-
 import {Link} from "react-router-dom";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
+import {useEffect} from "react";
 
 const Vacancies = () => {
+    const {data: directions, isLoading: isLoadingDirections} = useFetchData("/job-types");
 
 
 
-    const directions = [
-        {name:'Аналитика',id:1},
-        {name:'Разработка',id:2},
-        {name:'Дизайн',id:3},
-        {name:'Тестирование',id:4},
-        {name:'DevOps',id:5},
-        {name:'Сопровождение',id:6},
-        {name:'Продажи',id:7},
-        {name:'Управление продуктом и проектом',id:8},
-
-    ];
 
 
 
@@ -207,46 +198,32 @@ const Vacancies = () => {
                     <h2 className='page-title'>Доступные <span className='mobile-text-wrap'>направления</span></h2>
 
                     <div className='directions-items G-flex'>
-                        {directions.length > 0 ? (
-                            directions.map((direction, index) => (
-                                <Link key={index} to={'/vacanciesDetails'} className='directions-item G-justify-between'>
-                                    <h3 className='directions-name'>{direction.name}</h3>
-                                    <i className='icon icon-arrow-left'></i>
-                                </Link>
-                            ))
-                        ) : (
+
+                        {isLoadingDirections ? (
+                            <div className='loading'>Загрузка...</div>
+                        ) : directions.length === 0 ? (
                             <div className={'directions-null G-center'}>
                                 <p>Вакансий нет</p>
                             </div>
+                        ) : (
+                            directions.map((direction, index) => (
+                                <Link key={index}  to={`/vacanciesDetails/${direction.documentId}`}  className='directions-item G-justify-between'>
+                                    <h3 className='directions-name'>{direction?.name}</h3>
+                                    <i className='icon icon-arrow-left'></i>
+                                </Link>
+                            ))
+
                         )}
+
+
+
                     </div>
                 </div>
             </div>
         </section>
 
 
-        <section className='directions-section directions-null-section'>
-            <div className='average-container'>
-                <div className='directions-body'>
-                    <h2 className='page-title'>Доступные направления</h2>
 
-                    <div className='directions-items G-flex'>
-                        {directions.length > 30 ? (
-                            directions.map((direction, index) => (
-                                <Link key={index} to={'/'} className='directions-item G-justify-between'>
-                                    <h3 className='directions-name'>{direction.name}</h3>
-                                    <i className='icon icon-arrow-left'></i>
-                                </Link>
-                            ))
-                        ) : (
-                            <div className={'directions-null G-center'}>
-                                <p>Вакансий нет</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </section>
 
 
 

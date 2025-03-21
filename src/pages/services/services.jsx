@@ -1,46 +1,36 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.jsx";
 import './services.scss'
 import Form from "../../components/form/form.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Card from "../../components/card/card.jsx";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
+import {ToastContainer} from "react-toastify";
 
 const Services = () => {
-    const [isActive, setIsActive] = useState(true);
+    const [activeCategory, setActiveCategory] = useState(null);
+    const { data: servicesCategories, isLoading: isLoadingCategories } = useFetchData("/service-categories");
+    const { data: services, isLoading: isLoadingServices } = useFetchData("/services", "serviceCategory");
 
 
+    const toggleServicesList = (categoryId) => {
+        setActiveCategory(activeCategory === categoryId ? null : categoryId);
+    };
 
-    const toggleServicesList = () => {
-        setIsActive(!isActive);
+    const getCategoryServiceCount = (categoryName) => {
+        return services.filter(service => service?.serviceCategory.name === categoryName).length;
     };
 
 
-    const services = [
-        {title: "Разработка сайтов", link: "/servicesDetails"},
-        {title: "Разработка мобильных приложений", link: "/servicesDetails"},
-        {title: "Разработка ИТ-систем", link: "/servicesDetails"},
-        {title: "Искусственный интеллект", link: "/servicesDetails"},
-        {title: "Аналитические и BI решения", link: "/servicesDetails"},
-        {title: "Машинное обучение", link: "/servicesDetails"},
-        {title: "Компьютерное зрение", link: "/servicesDetails"},
-        {title: "асутп и низкоуровневые решения", link: "/servicesDetails"},
-        {title: "аппаратные решения и робототехника", link: "/servicesDetails"},
-        {title: "rpa и автоматизация бизнес-процессов", link: "/servicesDetails"},
-        {title: "чат-боты", link: "/servicesDetails"},
-        {title: "доработка и развитие существующих решений", link: "/servicesDetails"},
-        {title: "блокчейн и крипто", link: "/servicesDetails"},
-        {title: "электронная коммерция", link: "/servicesDetails"},
-        {title: "devops", link: "/servicesDetails"},
-        {title: "тестирование", link: "/servicesDetails"},
-        {title: "управление проектами", link: "/servicesDetails"},
-        {title: "аналитика и проектирование ", link: "/servicesDetails"},
-        {title: "составление документации", link: "/servicesDetails"},
-        {title: "ui/ux дизайн", link: "/"},
-        {title: "Big Data и анализ данных", link: "/servicesDetails"},
-        {title: "Аналитика", link: "/"},
-        {title: "Backend-разработка", link: "/servicesDetails"},
-        {title: "Frontend-разработка", link: "/servicesDetails"},
+    useEffect(() => {
+        if (servicesCategories.length > 0) {
+            setActiveCategory(servicesCategories[0].id);
+        }
+    }, [servicesCategories]);
 
-    ];
+
+
+
+
 
 
     return <>
@@ -69,10 +59,26 @@ const Services = () => {
                         </p>
                     </div>
 
-                    <div className='services-count G-align-center'>
-                        <span>20</span>
-                        <p>Аутсорсинг</p>
+
+                    <div className='services-counts G-align-center'>
+
+                        {isLoadingCategories ? (
+                            <div className='loading'>Загрузка...</div>
+                        ) : servicesCategories.length === 0 ? (
+                            <div className='null-products'>Нет  категории.</div>
+                        ) : (
+                            servicesCategories.map((category) => (
+                                <div key={category.id} className='services-count G-align-center'>
+                                    <span>{getCategoryServiceCount(category.name)}</span>
+                                    <p>{category.name}</p>
+                                </div>
+                            ))
+                        )}
+
+
                     </div>
+
+
                 </div>
             </div>
         </section>
@@ -81,26 +87,45 @@ const Services = () => {
         <section className='services-section'>
             <div className='average-container'>
                 <div className='services-body'>
-                    <div onClick={toggleServicesList}
-                         className={`services-list-header G-align-center ${isActive ? "active" : ""}`}>
-                        <h2 className='services-list-title'>Аутсорсинг</h2>
-                        <div className='services-items-count mobile-block'>
-                            <span>20</span>
-                        </div>
-                        <i className='icon services-arrow-down '></i>
-                    </div>
-                    <div className={`services-list  ${isActive ? "active" : ""}`}>
-                        {services.map((service, index) => (
-                            <Card key={index} item={service} index={index}/>
-                        ))}
 
-                    </div>
+                    {isLoadingServices ? (
+                        <div className='loading'>Загрузка...</div>
+                    ) : servicesCategories.length === 0  ? (
+                        <div className='null-products'>Нет продуктов в этой категории.</div>
+                    ) : (
+                        servicesCategories.map((category) => (
+                            <div key={category.id}>
+                                <div
+                                    onClick={() => toggleServicesList(category.id)}
+                                    className={`services-list-header G-align-center ${activeCategory === category.id ? "active" : ""}`}
+                                >
+                                    <h2 className='services-list-title'>{category.name}</h2>
+                                    <div className='services-items-count mobile-block'>
+                                        <span>{getCategoryServiceCount(category.name)}</span>
+                                    </div>
+                                    <i className='icon services-arrow-down '></i>
+                                </div>
+
+                                <div className={`services-list ${activeCategory === category.id ? "active" : ""}`}>
+                                    {services
+                                        .filter(service => service?.serviceCategory?.name === category.name)
+                                        .map((filteredService, index) => (
+                                            <Card key={index}  item={filteredService} index={index}/>
+                                        ))}
+                                </div>
+                            </div>
+                        ))
+                    )}
+
+
+
                 </div>
             </div>
         </section>
 
         <Form titleClass='services-form-title'/>
 
+        <ToastContainer/>
 
     </>
 };

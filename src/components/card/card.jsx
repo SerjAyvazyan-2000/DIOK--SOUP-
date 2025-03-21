@@ -2,8 +2,8 @@ import {Link} from "react-router-dom";
 import servicesItemDecor from "../../assets/images/servicesItemDecor.webp";
 import './card.scss'
 
-const Card = ({item,index}) => {
-    return <Link to={item.link}  className="services-item G-flex-column">
+const Card = ({item,index,link}) => {
+    return <Link to={`/servicesDetails/${item.documentId}`}   className="services-item G-flex-column">
         <h3 className="services-item-title">{item.title}</h3>
         <div className="services-item-icon G-justify-end">
             <i className="icon icon-arrow-left"></i>

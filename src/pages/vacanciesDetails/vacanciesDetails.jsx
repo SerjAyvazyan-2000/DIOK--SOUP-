@@ -1,149 +1,49 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.jsx";
 import './vacanciesDetails.scss'
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import VacancyItem from "../../components/VacancyItem/vacancyItem.jsx";
 import Modal from "../../ui/modal/modal.jsx";
 import Reply from "../../components/reply/reply.jsx";
+import api from "../../api.js";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
 
 const VacanciesDetails = () => {
-
+    const {id} = useParams();
+    const {data: directions, isLoading: isLoadingDirections} = useFetchData("/job-types");
     const [activeId, setActiveId] = useState(null);
     const [replay, setReplay] = useState(false);
+    const [selectedVacancy, setSelectedVacancy] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     const handleClick = (id) => {
         setActiveId(activeId === id ? null : id);
     };
 
 
+    useEffect(() => {
+        const fetchVacancies = async () => {
+            try {
+                setIsLoading(true)
+                const response = await api.get(`/job-types/${id}?populate=vacancies`);
+                if (response.status === 200) {
+                    setSelectedVacancy(response.data.data);
+                }
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-    const directions = [
-        {name: 'Аналитика', id: 1},
-        {name: 'Разработка', id: 2},
-        {name: 'Дизайн', id: 3},
-        {name: 'Тестирование', id: 4},
-        {name: 'DevOps', id: 5},
-        {name: 'Сопровождение', id: 6},
-        {name: 'Продажи', id: 7},
-        {name: 'Управление продуктом и проектом', id: 8},
+        fetchVacancies();
 
-    ];
+    }, [id]);
 
 
-    const vacancies = [
-        {
-            id: 1,
-            title: "Frontend developer",
-            experience: "Junior",
-            salary: "от 50,000 до 70,000₽",
-            'Условия': [
-                "Офисный формат работы",
-                "График работы на период испытательного срока: понедельник-пятница с 12.00 до 20.00, после его завершения: смены по 12 часов (день/ночь согласовывается в рамках графика на месяц)",
-                "Возможность быстрого карьерного роста (скорость зависит от ваших результатов и инициативы)"
-            ],
-            'Навыки и знания': [
-                "Английский на уровне В-2 и выше (вся коммуникация на английском языке)",
-                "Готовность к работе в разных графиках (дневные/ночные смены)",
-                "Базовые знания PostgreSQL, Python или других языков программирования"
-            ],
-            'Требования': [
-                "Обработка задач второй линии поддержки с контролем решения или эскалации по сквозному процессу",
-                "Анализ проблем и предложение решений для фиксов",
-                "Взаимодействие с другими отделами для решения задач и проблем клиентов",
-                "Расширение внутренней базы знаний и её поддержка в актуальном состоянии"
-            ],
-            'Дополнительно': [
-                "Опыт работы в службах поддержки или в других клиентских сервисах",
-                "Уровень владения английским языком на уровне С-1",
-                "Понимание основ ITSM",
-                "Желание развиваться в сфере финтеха"
-            ]
-        },
-        {
-            id: 2,
-            title: "backend developer",
-            experience: "Junior",
-            salary: "от 50,000 до 70,000₽",
-            'Условия': [
-                "Офисный формат работы",
-                "График работы на период испытательного срока: понедельник-пятница с 12.00 до 20.00, после его завершения: смены по 12 часов (день/ночь согласовывается в рамках графика на месяц)",
-                "Возможность быстрого карьерного роста (скорость зависит от ваших результатов и инициативы)"
-            ],
-            'Навыки и знания': [
-                "Английский на уровне В-2 и выше (вся коммуникация на английском языке)",
-                "Готовность к работе в разных графиках (дневные/ночные смены)",
-                "Базовые знания PostgreSQL, Python или других языков программирования"
-            ],
-            'Требования': [
-                "Обработка задач второй линии поддержки с контролем решения или эскалации по сквозному процессу",
-                "Анализ проблем и предложение решений для фиксов",
-                "Взаимодействие с другими отделами для решения задач и проблем клиентов",
-                "Расширение внутренней базы знаний и её поддержка в актуальном состоянии"
-            ],
-            'Дополнительно': [
-                "Опыт работы в службах поддержки или в других клиентских сервисах",
-                "Уровень владения английским языком на уровне С-1",
-                "Понимание основ ITSM",
-                "Желание развиваться в сфере финтеха"
-            ]
-        },
-        {
-            id: 3,
-            title: "Frontend developer",
-            experience: "Junior",
-            salary: "от 50,000 до 70,000₽",
-            'Условия': [
-                "Офисный формат работы",
-                "График работы на период испытательного срока: понедельник-пятница с 12.00 до 20.00, после его завершения: смены по 12 часов (день/ночь согласовывается в рамках графика на месяц)",
-                "Возможность быстрого карьерного роста (скорость зависит от ваших результатов и инициативы)"
-            ],
-            'Навыки и знания': [
-                "Английский на уровне В-2 и выше (вся коммуникация на английском языке)",
-                "Готовность к работе в разных графиках (дневные/ночные смены)",
-                "Базовые знания PostgreSQL, Python или других языков программирования"
-            ],
-            'Требования': [
-                "Обработка задач второй линии поддержки с контролем решения или эскалации по сквозному процессу",
-                "Анализ проблем и предложение решений для фиксов",
-                "Взаимодействие с другими отделами для решения задач и проблем клиентов",
-                "Расширение внутренней базы знаний и её поддержка в актуальном состоянии"
-            ],
-            'Дополнительно': [
-                "Опыт работы в службах поддержки или в других клиентских сервисах",
-                "Уровень владения английским языком на уровне С-1",
-                "Понимание основ ITSM",
-                "Желание развиваться в сфере финтеха"
-            ]
-        },
-        {
-            id: 24,
-            title: "backend developer",
-            experience: "Junior",
-            salary: "от 50,000 до 70,000₽",
-            'Условия': [
-                "Офисный формат работы",
-                "График работы на период испытательного срока: понедельник-пятница с 12.00 до 20.00, после его завершения: смены по 12 часов (день/ночь согласовывается в рамках графика на месяц)",
-                "Возможность быстрого карьерного роста (скорость зависит от ваших результатов и инициативы)"
-            ],
-            'Навыки и знания': [
-                "Английский на уровне В-2 и выше (вся коммуникация на английском языке)",
-                "Готовность к работе в разных графиках (дневные/ночные смены)",
-                "Базовые знания PostgreSQL, Python или других языков программирования"
-            ],
-            'Требования': [
-                "Обработка задач второй линии поддержки с контролем решения или эскалации по сквозному процессу",
-                "Анализ проблем и предложение решений для фиксов",
-                "Взаимодействие с другими отделами для решения задач и проблем клиентов",
-                "Расширение внутренней базы знаний и её поддержка в актуальном состоянии"
-            ],
-            'Дополнительно': [
-                "Опыт работы в службах поддержки или в других клиентских сервисах",
-                "Уровень владения английским языком на уровне С-1",
-                "Понимание основ ITSM",
-                "Желание развиваться в сфере финтеха"
-            ]
-        }
-    ];
+
+
 
 
     const handleReplay = () => {
@@ -169,31 +69,47 @@ const VacanciesDetails = () => {
                         nextUrl={'/vacancies'}
                     />
                 </div>
-                <div className='vacancies-top-body'>
-                    <h1 className='products-title'>Разработка</h1>
-                    <p className='products-sub-title'>
-                        Frontent / Backend / Devops / Testing
-                    </p>
-                </div>
+
+                    <div className='vacancies-top-body'>
+                        <h1 className='products-title'>{selectedVacancy?.name}</h1>
+
+
+                        <div className='products-sub-title vacancies-title-items G-align-center'>
+                            {selectedVacancy?.vacancies?.map((vacancy) => (
+                                <p key={vacancy.id} className='products-sub-title '>
+                                    {vacancy?.position} /
+                                </p>
+                            ))}
+                        </div>
+
+                    </div>
+
 
             </div>
         </section>
 
 
         <section className='vacancies-section'>
-            <div className='big-container'>
+        <div className='big-container'>
+
+                {!isLoading ?
+
+                    <div className='vacancies-list G-flex'>
+                        {selectedVacancy?.vacancies?.map((vacancy) => (
+                            <VacancyItem
+                                key={vacancy.id}
+                                vacancy={vacancy}
+                                isActive={activeId === vacancy.id}
+                                onClick={() => handleClick(vacancy.id)}
+                                handleReplay={handleReplay}
+                            />))}
+                    </div>
 
 
-                <div className='vacancies-list G-flex'>
-                    {vacancies.map((vacancy) => (
-                        <VacancyItem
-                            key={vacancy.id}
-                            vacancy={vacancy}
-                            isActive={activeId === vacancy.id}
-                            onClick={() => handleClick(vacancy.id)}
-                            handleReplay={handleReplay}
-                        />))}
-                </div>
+                    : <div className='loading'>Загрузка...</div>
+
+                }
+
 
             </div>
         </section>
@@ -205,26 +121,33 @@ const VacanciesDetails = () => {
                     <h2 className='page-title'>Доступные <span className='text-wrap'>направления</span></h2>
 
                     <div className='directions-items G-flex'>
-                        {directions.length > 0 ? (
-                            directions.map((direction, index) => (
-                                <Link key={index} to={'/vacanciesDetails'}
-                                      className='directions-item G-justify-between'>
-                                    <h3 className='directions-name'>{direction.name}</h3>
-                                    <i className='icon icon-arrow-left'></i>
-                                </Link>
-                            ))
-                        ) : (
+
+                        {isLoadingDirections ? (
+                            <div className='loading'>Загрузка...</div>
+                        ) : directions.length === 0 ? (
                             <div className={'directions-null G-center'}>
                                 <p>Вакансий нет</p>
                             </div>
+                        ) : (
+                            directions.map((direction, index) => (
+                                <Link key={index} to={`/vacanciesDetails/${direction.documentId}`}
+                                      className='directions-item G-justify-between'>
+                                    <h3 className='directions-name'>{direction?.name}</h3>
+                                    <i className='icon icon-arrow-left'></i>
+                                </Link>
+                            ))
+
                         )}
+
+
                     </div>
                 </div>
             </div>
         </section>
 
+
         <Modal close={handleReplay} active={replay}>
-            <Reply close={handleReplay} />
+            <Reply close={handleReplay}/>
         </Modal>
 
 
@@ -232,5 +155,6 @@ const VacanciesDetails = () => {
 };
 
 export default VacanciesDetails;
+
 
 

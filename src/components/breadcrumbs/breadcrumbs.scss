@@ -34,6 +34,7 @@
   line-height: 27px;
   color: variables.$gray6;
   transition: .3s;
+  text-transform: capitalize;
 
   &.active {
     color: variables.$white5;

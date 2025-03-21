@@ -4,14 +4,15 @@ import heroDecor from '../../assets/images/heroDecor.webp'
 import heroDecorMobile from '../../assets/images/heroDecorMobile.webp'
 import Form from "../../components/form/form.jsx";
 import Cookie from "../../components/cookie/cookie.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import CustomLink from "../../ui/customLink/link.jsx";
 import Modal from "../../ui/modal/modal.jsx";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
+import {ToastContainer} from "react-toastify";
 
 const Home = () => {
     const [feedback, setFeedback] = useState(false);
-
-
+    const {data: advantages, isLoading: isLoadingAdvantages} = useFetchData("/advantages",);
 
 
     const handleFeedback = () => {
@@ -26,6 +27,8 @@ const Home = () => {
             document.body.style.overflow = "";
         }
     }, [feedback]);
+
+
 
     return <>
         <section className='hero-section'>
@@ -129,7 +132,8 @@ const Home = () => {
 
                     <div className='trends-btn '>
 
-                        <CustomLink variant={'link-border'} icon={'icon-arrow-left'} text={'Все услуги'} url={'/services'}/>
+                        <CustomLink variant={'link-border'} icon={'icon-arrow-left'} text={'Все услуги'}
+                                    url={'/services'}/>
                     </div>
                 </div>
             </div>
@@ -137,57 +141,30 @@ const Home = () => {
         </section>
 
 
-        <section className='about-us-section'>
-            <div className='container'>
-                <div className='about-us-body'>
-                    <h2 className='about-us-title section-title'>ДИОК.ТЕХ <span>— это</span></h2>
 
-                    <div className='about-us-items  G-flex'>
-                        <div className='about-us-item  '>
-                            <div className='about-us-info'>
-                                <h3 className='trends-title block-title'>Управление рисками</h3>
-                                <p className='trends-text block-text'>
-                                    Оптимизируйте свои логистические операции с помощью наших индивидуальных ИТ-решений.
-                                    Оптимизируйте процессы и повысьте эффективность. Свяжитесь с нами сегодня, чтобы
-                                    узнать больше.
-                                </p>
-                            </div>
+
+
+        <section className="about-us-section">
+            <div className="container">
+                <div className="about-us-body">
+                    <h2 className="about-us-title section-title">
+                        ДИОК.ТЕХ <span>— это</span>
+                    </h2>
+
+                    {isLoadingAdvantages ? (
+                        <p className='loading'>Загрузка...</p>
+                    ) : (
+                        <div className="about-us-items G-flex">
+                            {advantages?.map((advantage) => (
+                                <div className="about-us-item" key={advantage.id}>
+                                    <div className="about-us-info">
+                                        <h3 className="trends-title block-title">{advantage.title}</h3>
+                                        <p className="trends-text block-text">{advantage.description}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-
-                        <div className='about-us-item  '>
-                            <div className='about-us-info'>
-                                <h3 className='trends-title block-title'>Работа по SLA</h3>
-                                <p className='trends-text '>
-                                    Обеспечите бесперебойную работу с помощью наших услуг ИТ консалтинга и разработки в
-                                    соответствии с соглашениями об уровне обслуживания (SLA) для оптимальной
-                                    производительности и надежности
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className='about-us-item  '>
-                            <div className='about-us-info'>
-                                <h3 className='trends-title block-title'>Гарантия результата</h3>
-                                <p className='trends-text '>
-                                    Уверенно внедряйте инновации с помощью наших ИТ-решений. Мы гарантируем измеримые
-                                    результаты для роста вашего бизнеса
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className='about-us-item  '>
-                            <div className='about-us-info'>
-                                <h3 className='trends-title block-title'>Оптимальные решения</h3>
-                                <p className='trends-text '>
-                                    Обеспечение конфиденциальности клиентов является нашим главным приоритетом.
-                                    Доверьтесь нам, чтобы защитить вашу конфиденциальную информацию с максимальной
-                                    осторожностью и безопасностью.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    )}
                 </div>
             </div>
         </section>
@@ -199,6 +176,7 @@ const Home = () => {
         <Modal close={() => handleFeedback()} active={feedback}>
             <Form blockClass={'modal-form-block'}/>
         </Modal>
+        <ToastContainer/>
 
     </>
 };

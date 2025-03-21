@@ -135,6 +135,7 @@
   p {
     display: flex;
     gap: 3px;
+    max-width: max-content;
 
     @include mixin.screen-max-width-576{
       display: inline;

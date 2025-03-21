@@ -5,12 +5,16 @@ import logo from '../../assets/images/logo.svg'
 import Button from "../../ui/button/button.jsx";
 import Modal from "../../ui/modal/modal.jsx";
 import Form from "../form/form.jsx";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
+import {ToastContainer} from "react-toastify";
 
 
 const Header = ({isHomePage}) => {
     const [feedback, setFeedback] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [isActive, setIsActive] = useState(false);
+    const {data: landing, isLoading: isLoadingLanding} = useFetchData("/landing", 'Logo');
+
 
 
     useEffect(() => {
@@ -31,15 +35,10 @@ const Header = ({isHomePage}) => {
     };
 
 
-
-
-
     const handleFeedback = () => {
         setFeedback(!feedback);
 
     }
-
-
 
 
     return <>
@@ -50,7 +49,10 @@ const Header = ({isHomePage}) => {
 
                 <div className='header-body G-justify-between'>
                     <NavLink onClick={toggleBurger} className='header-logo G-flex' to="/home">
-                        <img src={logo} alt=""/>
+                        {landing.Logo ?
+                            <img src={`${'http://31.129.56.213:1337'}${landing.Logo.url}`}
+                                 alt="logo"/> : <img src={logo} alt="logo"/>}
+
                     </NavLink>
                     <nav className={`menu ${isActive ? "active" : ""}`}>
                         <ul className='menu-list G-align-center'>
@@ -87,6 +89,7 @@ const Header = ({isHomePage}) => {
         <Modal close={() => handleFeedback()} active={feedback}>
             <Form blockClass={'modal-form-block'}/>
         </Modal>
+        <ToastContainer/>
 
     </>
 

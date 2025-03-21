@@ -10,8 +10,16 @@ import workingItemImg4 from '../../assets/images/workingItemImg4.webp'
 import workingItemImg4Mobile from '../../assets/images/workingItemImg4Mobile.webp'
 import Form from "../../components/form/form.jsx";
 import CustomLink from "../../ui/customLink/link.jsx";
+import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
+import React, {useEffect} from "react";
+import {ToastContainer} from "react-toastify";
 
 const Company = () => {
+
+    const { data: technologies, isLoading: isLoadingTechnologies } = useFetchData("/tehnologiis" );
+    const { data: companyInfo, isLoading: isLoadingCompany } = useFetchData("/o-kompanii" );
+
+
 
     const languages = [
         { name: "PHP", className: "rose-language"  },
@@ -63,10 +71,10 @@ const Company = () => {
 
     ];
 
-    const uniqueLanguages = [...new Set(languages.map(lang => lang.name))]
+    const uniqueLanguages = [...new Set(technologies.map(lang => lang.name))]
 
     const infiniteLanguages = [...Array(10)].flatMap(() =>
-        uniqueLanguages.map(name => languages.find(lang => lang.name === name))
+        uniqueLanguages.map(name => technologies.find(lang => lang.name === name))
     );
 
     const shuffleArray = (array) => {
@@ -83,22 +91,35 @@ const Company = () => {
         <section className='company-section'>
             <div className='container'>
                 <div className='hero-body'>
-                    <div className='hero-titles G-column-center'>
-                        <h1 className='hero-title company-hero-title'>В эпицентре IT</h1>
-                        <p className='company-sub-title'>
-                            Новые условия заставляют всерьёз задуматься о стабильности ИТ-ландшафтов: зарубежные
-                            продукты и системы <span className='desktop-text-wrap'>становятся недоступны, используемые сервисы отключают.</span>
-                        </p>
 
-                    </div>
+
+
+                    {!isLoadingCompany ? (
+                        companyInfo ? (
+                            <div className='hero-titles G-column-center'>
+                                <h1 className='hero-title company-hero-title'>{companyInfo?.title}</h1>
+                                <p className='company-sub-title'>{companyInfo?.slogan}</p>
+                            </div>
+                        ) : (
+                            <div className='hero-titles G-center'>
+                                <p className='error-message'>Информация о компании недоступна.</p>
+                            </div>
+                        )
+                    ) : (
+                        <div className='hero-titles G-center'>
+                            <p className='loading'>Загрузка...</p>
+                        </div>
+                    )}
+
 
                     <div className='company-hero-btn G-center'>
-                        <CustomLink variant={'link-border'} icon={'icon-arrow-left'} text={'Наши услуги'} url={'/services'}/>
+                        <CustomLink variant={'link-border'} icon={'icon-arrow-left'} text={'Наши услуги'}
+                                    url={'/services'}/>
                     </div>
 
 
                     <div className='company-hero-info G-column-center'>
-                        <div className='hero-clues'>
+                    <div className='hero-clues'>
                             <h2 className='hero-clue-title'>Понижаем расходы и повышаем доходы</h2>
                             <p className='hero-clue-sub'>
                                 За годы работы мы определили именно те услуги, благодаря которым возможно развитие
@@ -251,13 +272,14 @@ const Company = () => {
 
                     <div className="support-languages G-flex-column">
                         {[...Array(5)].map((_, index) => {
-                            const shuffledLanguages = shuffleArray([...infiniteLanguages]); // Перемешиваем массив для каждой колонки
-
+                            const shuffledLanguages = shuffleArray([...infiniteLanguages]);
                             return (
+
                                 <div key={index} className="support-language-column G-align-center">
                                     {shuffledLanguages.map((lang, index) => (
                                         <div key={index}
-                                             className={`language-item ${lang.size ? lang.size : ""} ${lang.className}`}>
+                                             className={`language-item `}
+                                             style={{ backgroundColor: lang.color }}>
                                             <span>{lang.name}</span>
                                         </div>
                                     ))}
@@ -271,6 +293,7 @@ const Company = () => {
 
         <Form/>
 
+        <ToastContainer/>
 
     </>
 };
