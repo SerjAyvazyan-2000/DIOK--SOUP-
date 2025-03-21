@@ -165,7 +165,6 @@
 }
 
 .hero-title {
-  font-family: "Sen", sans-serif;
   font-weight: 700;
   font-size: 72px;
   line-height: 86.4px;
@@ -176,8 +175,9 @@
 
 
   @include mixin.screen-max-width-767 {
-    font-size: 40px;
-    line-height: 43.4px;
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: -3%;
   }
 
 }
@@ -203,7 +203,7 @@
   @include mixin.screen-max-width-767 {
     font-size: 20px;
     line-height: 24px;
-    letter-spacing: 2px;
+    letter-spacing: 0;
 
   }
 
