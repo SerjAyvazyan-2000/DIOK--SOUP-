@@ -50,7 +50,7 @@ const Header = ({isHomePage}) => {
                 <div className='header-body G-justify-between'>
                     <NavLink onClick={toggleBurger} className='header-logo G-flex' to="/home">
                         {landing.Logo ?
-                            <img src={`${'http://31.129.56.213:1337'}${landing.Logo.url}`}
+                            <img src={`${'https://dioc.tech/admin/'}${landing.Logo.url}`}
                                  alt="logo"/> : <img src={logo} alt="logo"/>}
 
                     </NavLink>

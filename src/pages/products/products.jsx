@@ -53,7 +53,7 @@ const Products = () => {
                                 <div className='products-info-header G-align-center'>
                                     <div className='products-logo G-flex'>
                                         <img
-                                            src={product.logo ? `${'http://31.129.56.213:1337'}${product.logo.url}` : "/fallback-logo.svg"}
+                                            src={product.logo ? `${'https://dioc.tech/admin/'}${product.logo.url}` : "/fallback-logo.svg"}
                                             alt="logo"/>
 
                                     </div>
