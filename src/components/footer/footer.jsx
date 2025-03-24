@@ -41,12 +41,12 @@ const Footer = () => {
                         <NavLink to='/services' className='outsourcing-item'>Искусственный интеллект</NavLink>
                         <NavLink to='/services' className='outsourcing-item'>Аналитические и BI решения</NavLink>
                         <NavLink to='/services' className='outsourcing-item'>Электронная коммерция</NavLink>
-                        <NavLink to='/services' className='outsourcing-item'>Devops</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>DevOps</NavLink>
                         <NavLink to='/services' className='outsourcing-item'>Машинное обучение</NavLink>
                         <NavLink to='/services' className='outsourcing-item'>Тестирование</NavLink>
                         <NavLink to='/services' className='outsourcing-item'>Компьютерное зрение</NavLink>
                         <NavLink to='/services' className='outsourcing-item'>Управление проектами</NavLink>
-                        <NavLink to='/services' className='outsourcing-item'>Асутп и низкоуровневые решения</NavLink>
+                        <NavLink to='/services' className='outsourcing-item'>АСУТП и низкоуровневые решения</NavLink>
                         <NavLink to={'/services'} className='outsourcing-item'>Аналитика и проектирование </NavLink>
                         <NavLink to={'/services'} className='outsourcing-item'>Аппаратные решения и робототехника</NavLink>
                         <NavLink to={'/services'} className='outsourcing-item'>Составление документации</NavLink>

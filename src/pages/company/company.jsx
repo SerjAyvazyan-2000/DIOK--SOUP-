@@ -13,66 +13,63 @@ import CustomLink from "../../ui/customLink/link.jsx";
 import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
 import React, {useEffect} from "react";
 import {ToastContainer} from "react-toastify";
+import detailsItemActive from "../../assets/images/detailsItemActive.webp";
 
 const Company = () => {
 
-    const { data: technologies, isLoading: isLoadingTechnologies } = useFetchData("/tehnologiis" );
-    const { data: companyInfo, isLoading: isLoadingCompany } = useFetchData("/o-kompanii" );
-
+    const {data: technologies, isLoading: isLoadingTechnologies} = useFetchData("/tehnologiis");
+    const {data: companyInfo, isLoading: isLoadingCompany} = useFetchData("/o-kompanii");
 
 
     const languages = [
-        { name: "PHP", className: "rose-language"  },
-        { name: "Java", className: "gray-language" },
-        { name: "Python", className: "primary-language",},
-        { name: "HTML", className: "orange-language" },
-        { name: "PHP", className: "gray-language" },
-        { name: "Vue.js", className: "primary-language" },
-        { name: "JSON", className: "gray-language" },
-        { name: "Solana", className: "red-language" },
-        { name: "Ruby", className: "rose-language" },
-        { name: "Django", className: "primary-language" },
-        { name: "Swift", className: "orange-language" },
-        { name: "Kotlin", className: "orange-language" },
-        { name: "Dart", className: "primary-language" },
-        { name: "JavaScript", className: "gray-language",size:'big-gray' },
-        { name: "Flutter", className: "primary-language" },
-        { name: "SwiftUI", className: "gray-language" },
-        { name: "React Native", className: "gray-language",size:'big-primary' },
-        { name: "Figma", className: "orange-language" },
-        { name: "NodeJs", className: "red-language" },
-        { name: "Swift", className: "rose-language" },
-        { name: "Spring Boot", className: "rose-language" ,size:'big-primary' },
-        { name: "C#", className: "primary-language", side:'big-primary' },
-        { name: "BotPress", className: "rose-language" },
-        { name: "Siemens TIA", className: "gray-language" ,size:'big-gray'},
-        { name: "BotPress", className: "primary-language" },
-        { name: "C#", className: "gray-language" },
-        { name: ".NET", className: "orange-language" },
-        { name: "Ladder Logic", className: "gray-language",size:'big-gray'},
-        { name: "Sketch", className: "red-language" },
-        { name: "XML", className: "primary-language" },
-        { name: "Flask", className: "rose-language" },
-        { name: "Postman", className: "orange-language" },
-        { name: "Adobe XD", className: "primary-language" ,size:'big-primary'},
-        { name: "Figma", className: "rose-language" },
-        { name: "Apache Spark", className: "primary-language",size:'big-primary' },
-        { name: "TypeScript", className: "orange-language" },
-        { name: "MySQL", className: "primary-language" },
-        { name: "SQL", className: "orange-language" },
-        { name: "CSS", className: "red-language" },
-        { name: "Data Analysis", className: "rose-language" ,size:'big-primary'},
-        { name: "C++ ", className: "gray-language" },
-        { name: "OpenCV", className: "orange-language" },
-        { name: "Bash", className: "gray-language" },
-        { name: "React", className: "gray-language" },
-        { name: "Unity 3D", className: "rose-language",size:'big-primary' },
-        { name: "Kanban", className: "primary-language" },
+        {name: "PHP", className: "rose-language"},
+        {name: "Java", className: "gray-language"},
+        {name: "Python", className: "primary-language",},
+        {name: "HTML", className: "orange-language"},
+        {name: "PHP", className: "gray-language"},
+        {name: "Vue.js", className: "primary-language"},
+        {name: "JSON", className: "gray-language"},
+        {name: "Solana", className: "red-language"},
+        {name: "Ruby", className: "rose-language"},
+        {name: "Django", className: "primary-language"},
+        {name: "Swift", className: "orange-language"},
+        {name: "Kotlin", className: "orange-language"},
+        {name: "Dart", className: "primary-language"},
+        {name: "JavaScript", className: "gray-language", size: 'big-gray'},
+        {name: "Flutter", className: "primary-language"},
+        {name: "SwiftUI", className: "gray-language"},
+        {name: "React Native", className: "gray-language", size: 'big-primary'},
+        {name: "Figma", className: "orange-language"},
+        {name: "NodeJs", className: "red-language"},
+        {name: "Swift", className: "rose-language"},
+        {name: "Spring Boot", className: "rose-language", size: 'big-primary'},
+        {name: "C#", className: "primary-language", side: 'big-primary'},
+        {name: "BotPress", className: "rose-language"},
+        {name: "Siemens TIA", className: "gray-language", size: 'big-gray'},
+        {name: "BotPress", className: "primary-language"},
+        {name: "C#", className: "gray-language"},
+        {name: ".NET", className: "orange-language"},
+        {name: "Ladder Logic", className: "gray-language", size: 'big-gray'},
+        {name: "Sketch", className: "red-language"},
+        {name: "XML", className: "primary-language"},
+        {name: "Flask", className: "rose-language"},
+        {name: "Postman", className: "orange-language"},
+        {name: "Adobe XD", className: "primary-language", size: 'big-primary'},
+        {name: "Figma", className: "rose-language"},
+        {name: "Apache Spark", className: "primary-language", size: 'big-primary'},
+        {name: "TypeScript", className: "orange-language"},
+        {name: "MySQL", className: "primary-language"},
+        {name: "SQL", className: "orange-language"},
+        {name: "CSS", className: "red-language"},
+        {name: "Data Analysis", className: "rose-language", size: 'big-primary'},
+        {name: "C++ ", className: "gray-language"},
+        {name: "OpenCV", className: "orange-language"},
+        {name: "Bash", className: "gray-language"},
+        {name: "React", className: "gray-language"},
+        {name: "Unity 3D", className: "rose-language", size: 'big-primary'},
+        {name: "Kanban", className: "primary-language"},
 
     ];
-
-
-
 
 
     const uniqueLanguages = technologies
@@ -100,7 +97,6 @@ const Company = () => {
                 <div className='hero-body'>
 
 
-
                     {!isLoadingCompany ? (
                         companyInfo ? (
                             <div className='hero-titles G-column-center'>
@@ -126,7 +122,7 @@ const Company = () => {
 
 
                     <div className='company-hero-info G-column-center'>
-                    <div className='hero-clues'>
+                        <div className='hero-clues'>
                             <h2 className='hero-clue-title'>Понижаем расходы и повышаем доходы</h2>
                             <p className='hero-clue-sub'>
                                 За годы работы мы определили именно те услуги, благодаря которым возможно развитие
@@ -216,7 +212,6 @@ const Company = () => {
                                 <img className='img-mobile' src={workingItemImg4Mobile} alt="image"/>
 
 
-
                             </div>
 
                         </div>
@@ -229,7 +224,8 @@ const Company = () => {
         <section className='results-section'>
             <div className='average-container'>
                 <div className='results-body'>
-                    <h2 className='page-title'>Результаты после <span className='mobile-text-wrap'>работы с ДИОК</span></h2>
+                    <h2 className='page-title'>Результаты после <span className='mobile-text-wrap'>работы с ДИОК</span>
+                    </h2>
                     <div className='results-items G-flex'>
                         <div className='results-item G-flex-column'>
                             <h3 className='page-item-title'>Рост чистой прибыли</h3>
@@ -267,7 +263,7 @@ const Company = () => {
 
         <section className='support-section'>
             <div className='support-container'>
-                <div className='support-body'>
+                <div className='support-body '>
                     <div className='support-title '>
                         <h2 className='page-title'>Поддерживаем более <span
                             className='mobile-text-wrap'>100 языков</span>
@@ -278,20 +274,28 @@ const Company = () => {
                     </div>
 
 
-                    <div className="support-languages G-flex-column">
-                        {[...Array(5)].map((_, columnIndex) => {
-                            const shuffledLanguages = shuffleArray(infiniteLanguages).slice(0, uniqueLanguages.length); // Ограничиваем дубли
-                            return (
-                                <div key={columnIndex} className="support-language-column G-align-center">
-                                    {shuffledLanguages.map((lang, index) => (
-                                        <div key={`${lang.name}-${index}`} className="language-item" style={{ backgroundColor: lang.color }}>
-                                            <span>{lang.name}</span>
+                    {isLoadingTechnologies ? <div className='support-loading loading'>Загрузка...</div> :
+                        technologies.length === 0 ?
+                            <div className='support-null null-products'>Нет категории.</div>
+                            :
+
+                            <div className="support-languages G-flex-column">
+                                {[...Array(5)].map((_, columnIndex) => {
+                                    const shuffledLanguages = shuffleArray(infiniteLanguages).slice(0, uniqueLanguages.length); // Ограничиваем дубли
+                                    return (
+                                        <div key={columnIndex} className="support-language-column G-align-center">
+                                            {shuffledLanguages.map((lang, index) => (
+                                                <div key={`${lang.name}-${index}`} className="language-item"
+                                                     style={{backgroundColor: lang.color}}>
+                                                    <span>{lang.name}</span>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                            );
-                        })}
-                    </div>;
+                                    );
+                                })}
+                            </div>
+                    }
+
 
                 </div>
             </div>

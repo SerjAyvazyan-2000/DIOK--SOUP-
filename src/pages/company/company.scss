@@ -209,7 +209,14 @@
     transform: translateX(100%);
   }
 }
-
+.support-loading{
+  text-align: center;
+  margin-top: 20px;
+}
+.support-null{
+  text-align: center;
+  margin-top: 20px;
+}
 
 
 .language-item {
@@ -218,7 +225,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 175px;
+  min-width: 165px;
 
   span {
     font-weight: 400;
