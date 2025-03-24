@@ -181,6 +181,9 @@
 
 
 
+
+
+
 .support-language-column:nth-child(even) {
   animation: scrollRight 100s linear infinite;
 
@@ -189,26 +192,31 @@
 
   }
 }
-.company-page-text{
-  color: rgba(255, 255, 255, 0.6);;
-}
+
+
 @keyframes scrollLeft {
   from {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   to {
-    transform: translateX(-70%);
+    transform: translateX(-100%);
   }
 }
 
 @keyframes scrollRight {
   from {
-    transform: translateX(-70%);
+    transform: translateX(0);
   }
   to {
     transform: translateX(100%);
   }
 }
+
+
+.company-page-text{
+  color: rgba(255, 255, 255, 0.6);;
+}
+
 .support-loading{
   text-align: center;
   margin-top: 20px;
