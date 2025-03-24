@@ -118,7 +118,7 @@ const VacanciesDetails = () => {
         <section className='details-directions-section'>
             <div className='average-container'>
                 <div className='directions-body'>
-                    <h2 className='page-title'>Доступные <span className='text-wrap'>направления</span></h2>
+                    <h2 className='page-title'>Доступные направления</h2>
 
                     <div className='directions-items G-flex'>
 

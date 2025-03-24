@@ -34,36 +34,23 @@ const Vacancies = () => {
 
                     <div className='vacancies-clues  G-flex'>
 
-                        <div className='vacancies-clue'>
-                            <span>Аналитика</span>
-                        </div>
+                        {isLoadingDirections ? (
+                            <div className='loading'>Загрузка...</div>
+                        ) : directions.length === 0 ? (
+                            <div className={'directions-null G-center'}>
+                                <p>Доступные направления нет</p>
+                            </div>
+                        ) : (
+                            directions.map((direction, index) => (
+                                <Link key={index} to={`/vacanciesDetails/${direction.documentId}`}
+                                      className='vacancies-clue '>
+                                    <span>{direction?.name}</span>
 
-                        <div className='vacancies-clue'>
-                            <span>Разработка</span>
-                        </div>
+                                </Link>
+                            ))
 
-                        <div className='vacancies-clue order-3'>
-                            <span>Дизайн</span>
-                        </div>
+                        )}
 
-                        <div className='vacancies-clue desktop-clue'>
-                            <span>DevOps</span>
-                        </div>
-                        <div className='vacancies-clue desktop-clue'>
-                            <span>Продажи</span>
-                        </div>
-
-                        <div className='vacancies-clue order-3'>
-                            <span>Тестирование</span>
-                        </div>
-
-                        <div className='vacancies-clue order-2'>
-                            <span>Управление продуктоaм и проектом</span>
-                        </div>
-
-                        <div className='vacancies-clue order-4'>
-                            <span>Сопровождение</span>
-                        </div>
 
                     </div>
                 </div>

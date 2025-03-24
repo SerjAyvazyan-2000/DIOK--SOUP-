@@ -71,11 +71,19 @@ const Company = () => {
 
     ];
 
-    const uniqueLanguages = [...new Set(technologies.map(lang => lang.name))]
 
-    const infiniteLanguages = [...Array(10)].flatMap(() =>
-        uniqueLanguages.map(name => technologies.find(lang => lang.name === name))
-    );
+
+
+
+    const uniqueLanguages = technologies
+        ? [...new Set(technologies.map(lang => lang.name))]
+        : [];
+
+    const infiniteLanguages = technologies
+        ? [...Array(3)].flatMap(() =>
+            uniqueLanguages.map(name => technologies.find(lang => lang.name === name))
+        )
+        : [];
 
     const shuffleArray = (array) => {
         let shuffled = [...array];
@@ -85,7 +93,6 @@ const Company = () => {
         }
         return shuffled;
     };
-
 
     return <>
         <section className='company-section'>
@@ -262,7 +269,8 @@ const Company = () => {
             <div className='support-container'>
                 <div className='support-body'>
                     <div className='support-title '>
-                        <h2 className='page-title'>Поддерживаем более <span className='mobile-text-wrap'>100 языков</span>
+                        <h2 className='page-title'>Поддерживаем более <span
+                            className='mobile-text-wrap'>100 языков</span>
                             <span className='desktop-text-wrap'> программирования и
                             фреймворков</span>
                         </h2>
@@ -271,22 +279,20 @@ const Company = () => {
 
 
                     <div className="support-languages G-flex-column">
-                        {[...Array(5)].map((_, index) => {
-                            const shuffledLanguages = shuffleArray([...infiniteLanguages]);
+                        {[...Array(5)].map((_, columnIndex) => {
+                            const shuffledLanguages = shuffleArray(infiniteLanguages).slice(0, uniqueLanguages.length); // Ограничиваем дубли
                             return (
-
-                                <div key={index} className="support-language-column G-align-center">
+                                <div key={columnIndex} className="support-language-column G-align-center">
                                     {shuffledLanguages.map((lang, index) => (
-                                        <div key={index}
-                                             className={`language-item `}
-                                             style={{ backgroundColor: lang.color }}>
+                                        <div key={`${lang.name}-${index}`} className="language-item" style={{ backgroundColor: lang.color }}>
                                             <span>{lang.name}</span>
                                         </div>
                                     ))}
                                 </div>
                             );
                         })}
-                    </div>
+                    </div>;
+
                 </div>
             </div>
         </section>

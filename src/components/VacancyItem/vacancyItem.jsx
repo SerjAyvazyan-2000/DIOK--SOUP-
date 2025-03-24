@@ -19,9 +19,12 @@ const VacancyItem = ({ vacancy ,isActive,onClick,handleReplay}) => {
 
             <div className='vacancy-tools G-align-center'>
                 <Button onClick={handleReplay} text='Откликнуться' variant={'btn-primary'}/>
-                <p className='vacancies-price'>
-                    от {vacancy?.min_salary?.toLocaleString("en-US")} до {vacancy?.max_salary?.toLocaleString("en-US")} ₽
+                <p className='vacancies-price G-align-center'>
+                    <span>от {vacancy?.min_salary?.toLocaleString("en-US").replace(/,/g, " ")}</span>
+
+                    <span>до {vacancy?.max_salary?.toLocaleString("en-US").replace(/,/g, " ")} ₽</span>
                 </p>
+
 
             </div>
 

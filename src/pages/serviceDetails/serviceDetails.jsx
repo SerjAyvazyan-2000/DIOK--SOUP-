@@ -29,7 +29,9 @@ const ServiceDetails = () => {
     const [activeCategory, setActiveCategory] = useState(null);
     const [order, setOrder] = useState(false);
     const [selectedService, setSelectedService] = useState(null);
+    const [breadcrumbText, setBreadcrumbText] = useState(selectedService?.title);
     const [selectedSubService, setSelectedSubService] = useState(null);
+    const [feedback, setFeedback] = useState(false);
     const {data: servicesCategories, isLoading: isLoadingCategories} = useFetchData("/service-categories");
     const {data: services, isLoading: isLoadingServices} = useFetchData("/services", "serviceCategory");
     const {data: subServices, isLoading: isLoadingSubServices} = useFetchData("/subservices", "services");
@@ -50,6 +52,7 @@ const ServiceDetails = () => {
         if (servicesCategories.length > 0) {
             setActiveCategory(servicesCategories[0].id);
         }
+
     }, [servicesCategories]);
 
 
@@ -61,7 +64,7 @@ const ServiceDetails = () => {
     useEffect(() => {
         const fetchService = async () => {
             try {
-                const response = await api.get(`/services/${id}`);
+                const response = await api.get(`/services/${id}?populate=serviceCategory`);
                 if (response.status === 200) {
                     setSelectedService(response.data.data);
                 }
@@ -74,10 +77,27 @@ const ServiceDetails = () => {
 
     }, [id]);
 
+    const handleFeedback = () => {
+        setFeedback(!feedback);
 
+    }
 
+    useEffect(() => {
+        if (!selectedService) return;
 
+        const handleResize = () => {
+            setBreadcrumbText(
+                window.innerWidth < 570
+                    ? selectedService?.serviceCategory?.name
+                    : selectedService?.title
+            );
+        };
 
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, [selectedService]); // Ждём загрузки данных
 
 
     useEffect(() => {
@@ -111,7 +131,7 @@ const ServiceDetails = () => {
                     <Breadcrumbs
                         prevUrl='Услуги '
                         nextUrl={'/servicesDetails'}
-                        next={`${selectedService?.title}`}
+                        next={breadcrumbText || ""}
                     />
                     <div className='details-share-share share G-align-center'>
                         <span>Поделиться</span>
@@ -272,7 +292,7 @@ const ServiceDetails = () => {
                                 <h4 className='details-about-title'>// КЕЙСЫ</h4>
 
                                 <div className='cases-btn'>
-                                    <Button text={'Оставить заявку'} variant={'btn-primary'}/>
+                                    <Button onClick={handleFeedback} text={'Оставить заявку'} variant={'btn-primary'}/>
                                 </div>
 
                             </div>
@@ -587,6 +607,10 @@ const ServiceDetails = () => {
 
         <Modal close={() => handleOrder()} active={order}>
             <Order title={selectedSubService} close={() => handleOrder()}/>
+        </Modal>
+
+        <Modal close={() => handleFeedback()} active={feedback}>
+            <Form blockClass={'modal-form-block'}/>
         </Modal>
         <ToastContainer/>
 

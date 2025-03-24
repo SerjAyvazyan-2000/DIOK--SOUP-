@@ -152,11 +152,14 @@
   i {
     transition: .3s;
   }
+  i {
+    transform: rotate(180deg);
+  }
 
   &.active {
 
     i {
-      transform: rotate(180deg);
+      transform: rotate(0);
     }
   }
 
