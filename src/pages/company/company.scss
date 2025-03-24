@@ -169,10 +169,10 @@
 .support-language-column {
   gap: 24px;
   justify-content: center;
-  animation: scrollLeft 100s linear infinite;
+  animation: scrollLeft 50s linear infinite;
 
   @include mixin.screen-max-width-576{
-    animation: scrollLeft 60s linear infinite;
+    animation: scrollLeft 30s linear infinite;
 
   }
 
@@ -185,10 +185,10 @@
 
 
 .support-language-column:nth-child(even) {
-  animation: scrollRight 100s linear infinite;
+  animation: scrollRight 50s linear infinite;
 
   @include mixin.screen-max-width-576{
-    animation: scrollRight 60s linear infinite;
+    animation: scrollRight 30s linear infinite;
 
   }
 }
@@ -211,8 +211,6 @@
     transform: translateX(30%);
   }
 }
-
-
 .company-page-text{
   color: rgba(255, 255, 255, 0.6);;
 }
