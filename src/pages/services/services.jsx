@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import Card from "../../components/card/card.jsx";
 import {useFetchData} from "../../hooks/useFetchData/useFetchData.jsx";
 import {ToastContainer} from "react-toastify";
+import SEO from "../../SEO.jsx";
 
 const Services = () => {
     const [activeCategory, setActiveCategory] = useState(null);
@@ -34,14 +35,18 @@ const Services = () => {
 
 
     return <>
+       <SEO
+            title="Services | DIOK"
+            description="DIOK — современные IT-решения. Создаём сайты и сервисы под ключ."
+          />
         <section className='services-breadcrumbs'>
             <div className='big-container'>
                 <div className='breadcrumbs-body G-align-center'>
                     <Breadcrumbs nextUrl={'/services'} next={'Услуги '}/>
-                    <div className=' services-share share G-align-center'>
+                    {/* <div className=' services-share share G-align-center'>
                         <span>Поделиться</span>
                         <i className='icon icon-share'></i>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

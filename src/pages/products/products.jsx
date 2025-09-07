@@ -27,7 +27,7 @@ const Products = () => {
             <div className='big-container'>
                 <div className='products-top-body'>
                     <div className='products-titles'>
-                        <h1 className='products-title'>ПРОДУКТЫ</h1>
+                        <h2 className='products-title'>ПРОДУКТЫ</h2>
                         <p className='products-sub-title'>
                             Предлагая передовые решения в области веб-разработки и разработки программного обеспечения,
                             <span className='desktop-text-wrap'>наши продукты переопределяют эффективность и инновации в технологической отрасли.</span>

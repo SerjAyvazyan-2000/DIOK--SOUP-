@@ -133,10 +133,10 @@ const ServiceDetails = () => {
                         nextUrl={'/servicesDetails'}
                         next={breadcrumbText || ""}
                     />
-                    <div className='details-share-share share G-align-center'>
+                    {/* <div className='details-share-share share G-align-center'>
                         <span>Поделиться</span>
                         <i className='icon icon-share'></i>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
